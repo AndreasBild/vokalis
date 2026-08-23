@@ -8,12 +8,22 @@
   <meta name="robots" content="noindex, follow">
   <meta name="theme-color" content="#0f766e">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Security & Privacy HTTP Equivalents -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'self';">
+
+  <!-- Favicon & PWA Manifest -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/icons/favicon.svg">
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- Accessibility: Skip to Main Content -->
+  <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
 
   <header class="header">
     <div class="container header-container">
@@ -36,7 +46,8 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
+
     <div class="legal-page-header">
       <div class="container">
         <h1 class="section-title" style="margin-bottom: 0.5rem;">Datenschutzerklärung</h1>
