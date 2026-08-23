@@ -7,8 +7,9 @@
   <meta name="description" content="Moderne Logopädiepraxis für Kinder, Jugendliche und Erwachsene. Spezialisiert auf Sprach-, Sprech-, Stimm- und Schlucktherapie. Alle Kassen & Privat.">
   <meta name="keywords" content="Logopädie, Sprachtherapie, Stimmtherapie, Kindersprache, Aphasie, Stottern, Schluckstörung, Dysphagie, Vokalis, Logopäde">
   <meta name="author" content="Vokalis Logopädie">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
   <meta name="theme-color" content="#0f766e">
+
 
   <!-- Security & Privacy HTTP Equivalents -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -135,8 +136,67 @@
 
 </head>
 <body>
+  <!-- =========================================================================
+       PREVIEW & ACCESS CONTROL LOCKSCREEN (COMING SOON GATE)
+       ========================================================================= -->
+  <div id="preview-gate" class="preview-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="preview-gate-backdrop"></div>
+    <div class="preview-gate-card">
+      <div class="preview-gate-logo">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+          <circle cx="20" cy="20" r="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="2.5"/>
+          <path d="M12 20C12 15.5817 15.5817 12 20 12C24.4183 12 28 15.5817 28 20" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M15 22C15 19.2386 17.2386 17 20 17C22.7614 17 25 19.2386 25 22" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="26" r="3" fill="#f97316"/>
+        </svg>
+      </div>
+
+      <div class="preview-badge">
+        <span class="preview-badge-dot"></span>
+        <span>Praxis im Aufbau • Eröffnung demnächst</span>
+      </div>
+
+      <h1 id="gate-title" class="preview-gate-title">Vokalis<span class="brand-highlight">.</span> Logopädie</h1>
+      <p class="preview-gate-subtitle">
+        Hier entsteht unsere moderne Praxis für Sprach-, Sprech-, Stimm- und Schlucktherapie. Wir freuen uns darauf, Sie bald persönlich bei uns begrüßen zu dürfen!
+      </p>
+
+      <div class="preview-contact-box">
+        <div class="preview-contact-title">Voranfragen & Information:</div>
+        <div class="preview-contact-items">
+          <a href="mailto:kontakt@vokalis.de" class="preview-contact-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>kontakt@vokalis.de</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Passcode Unlock Section -->
+      <div class="preview-unlock-box">
+        <details class="preview-unlock-details" id="preview-unlock-details">
+          <summary class="preview-unlock-summary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            <span>Interner Vorschau-Zugang</span>
+          </summary>
+          <form id="preview-passcode-form" class="preview-form">
+            <div class="preview-input-group">
+              <input type="password" id="preview-passcode-input" class="preview-input" placeholder="Passcode eingeben" autocomplete="current-password" required>
+              <button type="submit" class="btn btn-primary btn-sm">Freischalten</button>
+            </div>
+            <div id="preview-error-msg" class="preview-error" role="alert" style="display: none;"></div>
+          </form>
+        </details>
+      </div>
+
+      <div class="preview-gate-footer">
+        <a href="impressum.html">Impressum</a> &bull; <a href="datenschutz.html">Datenschutz</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Accessibility: Skip to Main Content -->
   <a href="#main-content" class="skip-link">Zum Hauptinhalt springen</a>
+
 
   <!-- =========================================================================
        HEADER / NAVIGATION
