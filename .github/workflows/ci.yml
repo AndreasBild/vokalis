@@ -1,0 +1,93 @@
+name: CI Web Verification & Linting
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-web:
+    name: HTML, CSS & Schema Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate HTML Structure
+        run: |
+          echo "🔍 Checking HTML markup validity..."
+          node -e "
+            const fs = require('fs');
+            const files = ['index.html', 'impressum.html', 'datenschutz.html'];
+            let hasError = false;
+            for (const file of files) {
+              if (!fs.existsSync(file)) {
+                console.error('❌ Missing file: ' + file);
+                hasError = true;
+                continue;
+              }
+              const content = fs.readFileSync(file, 'utf8');
+              if (!content.includes('<!DOCTYPE html>')) {
+                console.error('❌ Missing DOCTYPE in ' + file);
+                hasError = true;
+              }
+              if (!content.includes('<html lang=\"de\">')) {
+                console.error('❌ Missing lang attribute in ' + file);
+                hasError = true;
+              }
+              if (!content.includes('<meta name=\"viewport\"')) {
+                console.error('❌ Missing viewport meta in ' + file);
+                hasError = true;
+              }
+            }
+            if (hasError) process.exit(1);
+            console.log('✅ HTML markup verification passed.');
+          "
+
+      - name: Validate JSON-LD Structured Data
+        run: |
+          echo "🔍 Validating Schema.org JSON-LD..."
+          node -e "
+            const fs = require('fs');
+            const html = fs.readFileSync('index.html', 'utf8');
+            const match = html.match(/<script type=\"application\/ld\+json\">([\s\S]*?)<\/script>/);
+            if (!match) {
+              console.error('❌ No JSON-LD block found in index.html');
+              process.exit(1);
+            }
+            try {
+              const data = JSON.parse(match[1]);
+              if (!data['@context'] || !data['@type']) {
+                console.error('❌ JSON-LD missing @context or @type');
+                process.exit(1);
+              }
+              console.log('✅ Valid JSON-LD Schema detected (' + data['@type'] + ').');
+            } catch (err) {
+              console.error('❌ Invalid JSON-LD syntax:', err.message);
+              process.exit(1);
+            }
+          "
+
+      - name: Verify CSS Integrity
+        run: |
+          echo "🔍 Verifying CSS syntax and custom properties..."
+          node -e "
+            const fs = require('fs');
+            const cssPath = 'css/style.css';
+            if (!fs.existsSync(cssPath)) {
+              console.error('❌ Missing ' + cssPath);
+              process.exit(1);
+            }
+            const css = fs.readFileSync(cssPath, 'utf8');
+            if (!css.includes(':root') || !css.includes('--primary')) {
+              console.error('❌ CSS design tokens missing in ' + cssPath);
+              process.exit(1);
+            }
+            console.log('✅ CSS tokens and structure verified.');
+          "
