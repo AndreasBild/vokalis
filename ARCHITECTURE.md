@@ -1,95 +1,147 @@
 # Architecture & Technical Design – Vokalis Logopädie
 
 ## 1. Executive Summary
-**Vokalis** (`vokalis.de`) is a high-performance, accessible, and responsive web presence for a specialized speech therapy clinic (Praxis für Logopädie & Sprachtherapie). It provides comprehensive patient information for children, adults, voice professionals, and neurological patients, complete with a structured treatment roadmap, interactive inquiry assistant, and schema-rich local SEO.
+**Vokalis** (`vokalis.de`) is a high-performance, accessible (WCAG 2.1 AA/AAA), and privacy-first (100% DSGVO compliant) web presence for a specialized speech therapy clinic (Praxis für Logopädie & Sprachtherapie). It provides structured patient guidance, interactive therapy filtering, an intelligent 4-step appointment/consultation assistant, comprehensive local SEO structured data, and an automated AWS S3/CloudFront deployment pipeline with maximum Brotli pre-compression.
 
 ---
 
-## 2. Technical Architecture
+## 2. Technical Architecture & Invariants
 
-### 2.1 Design System & CSS Custom Properties
-The styling architecture in [`css/style.css`](file:///Users/andreasbild/IdeaProjects/vokalis/css/style.css) is organized systematically around modular tokens:
-
-* **Color Palette:**
-  - Primary Brand (Teal): `--primary: #0f766e`, `--primary-light: #14b8a6`, `--primary-dark: #115e59`, `--primary-subtle: #f0fdfa`
-  - Secondary (Slate & Sage): `--secondary: #334155`, `--secondary-light: #64748b`
-  - Energy & Accent (Coral / Amber): `--accent: #f97316`, `--accent-hover: #ea580c`, `--accent-subtle: #fff7ed`
-  - Neutral Backgrounds: `--bg-main: #ffffff`, `--bg-alt: #f8fafc`, `--bg-card: #ffffff`
-  - Text: `--text-main: #0f172a`, `--text-muted: #475569`, `--text-light: #94a3b8`
-* **Typography:**
-  - Base Font: `'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`
-  - Heading Scales: Dynamic `clamp()` fluid type scaling for optimal readability on all screen sizes.
-* **Layout & Elevational Shadows:**
-  - Max container width: `1280px`
-  - Elevation tokens: `--shadow-sm`, `--shadow-md`, `--shadow-lg`, `--shadow-xl`, `--shadow-glow`
-  - Border Radii: `--radius-sm (6px)`, `--radius-md (12px)`, `--radius-lg (20px)`, `--radius-full (9999px)`
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                              Vokalis Web Stack                         │
+│                                                                        │
+│   ┌─────────────────────┐   ┌───────────────────┐   ┌──────────────┐   │
+│   │   HTML5 Semantic    │   │  CSS3 Custom Prop │   │  Vanilla JS  │   │
+│   │ (Landmarks, Schema) │   │ (Design Tokens)   │   │ (ES6+, XSS)  │   │
+│   └──────────┬──────────┘   └─────────┬─────────┘   └───────┬──────┘   │
+│              │                        │                     │          │
+│              └────────────────────────┼─────────────────────┘          │
+│                                       ▼                                │
+│                     ┌───────────────────────────────────┐              │
+│                     │  scripts/deploy.py (Brotli Q11)   │              │
+│                     └─────────────────┬─────────────────┘              │
+│                                       │                                │
+│                                       ▼                                │
+│                     ┌───────────────────────────────────┐              │
+│                     │ AWS S3 (s3://vokalis.de)          │              │
+│                     │ (Content-Encoding: br)            │              │
+│                     └─────────────────┬─────────────────┘              │
+│                                       │ Invalidation (/*)              │
+│                                       ▼                                │
+│                     ┌───────────────────────────────────┐              │
+│                     │ CloudFront CDN (E3QGOGTX8QE7DE)   │              │
+│                     └───────────────────────────────────┘              │
+└────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 3. Component Hierarchy & Sections
+## 3. Design System & CSS Custom Properties
+
+The styling architecture in [`css/style.css`](file:///Users/andreasbild/IdeaProjects/vokalis/css/style.css) is organized around systematic tokens:
+
+### 3.1 Color Palette
+* **Primary Brand (Teal):** `--primary: #0f766e`, `--primary-light: #14b8a6`, `--primary-lighter: #2dd4bf`, `--primary-dark: #115e59`, `--primary-darkest: #134e4a`, `--primary-subtle: #f0fdfa`
+* **Secondary (Slate & Navy):** `--secondary: #1e293b`, `--secondary-light: #334155`, `--secondary-muted: #64748b`
+* **Energy & Warmth Accent (Amber / Coral):** `--accent: #f97316`, `--accent-light: #fb923c`, `--accent-dark: #ea580c`, `--accent-subtle: #fff7ed`
+* **Feedback:** `--success: #16a34a`, `--success-subtle: #f0fdf4`, `--info: #0284c7`, `--info-subtle: #f0f9ff`
+* **Backgrounds:** `--bg-page: #ffffff`, `--bg-subtle: #f8fafc`, `--bg-card: #ffffff`, `--bg-glass: rgba(255, 255, 255, 0.88)`
+
+### 3.2 Typography & Font Rendering
+* **Local System Font Stack:** `'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`
+* **DSGVO Guarantee:** 0 remote font calls (no connections to Google Fonts servers).
+* **Fluid Type Scaling:** `clamp()` scales for all heading levels.
+
+### 3.3 Core Web Vitals & Performance Rules
+* **`content-visibility: auto; contain-intrinsic-size: 1px 700px;`** applied to offscreen sections (`#therapien`, `#ablauf`, `#praxis`, `#assistent`, `#faq`, `#kontakt`) to minimize initial main-thread blocking time.
+* **Speculation Rules API:** Instant pre-rendering of legal pages (`impressum.html`, `datenschutz.html`).
+* **Passive Event Listeners:** All scroll and touch handlers use `{ passive: true }` and `requestAnimationFrame` throttling.
+* **Zero Layout Shift (CLS = 0):** Explicit dimensions on all icons, SVGs, and containers.
+
+---
+
+## 4. Component Hierarchy & User Journeys
 
 ```
 index.html
-├── Header & Sticky Navigation
-│   ├── Brand Logo (SVG Vector)
-│   ├── Navigation Links (Über uns, Schwerpunkte, Ablauf, FAQ, Kontakt)
-│   ├── Action CTA Button ("Termin anfragen")
-│   └── Mobile Hamburger Toggle
-├── Hero Section
-│   ├── Value Pitch & Primary Headlines
-│   ├── Quick Feature Badges (Alle Kassen, Barrierefrei, Hausbesuche)
-│   ├── Dual Action CTAs (Erstberatung, Leistungen)
-│   └── Floating Trust Metrics Card
-├── Specialties / Therapiefelder (Interactive Filter)
-│   ├── Filter Navigation Tabs (Alle, Kinder, Erwachsene, Stimme, Neurologie)
-│   └── Category Cards with Micro-Interactions & Detail Lists
-├── Process & Roadmap (Ablauf & Verordnung)
-│   ├── 4-Step Patient Guide (Arzttermin ➔ Kontakt ➔ Diagnostik ➔ Therapie)
-│   └── Prescription Guidelines (Muster 13, 28-Tage-Frist)
-├── Practice & Philosophy (Über die Praxis)
-│   ├── Modern Equipment & Relaxed Ambiance
-│   └── Core Values (Empathie, Wissenschaft, Individualität)
-├── Interactive Appointment & Inquiry Assistant
-│   ├── Step-based Questionnaire (Patient, Ziel, Rezeptstatus)
-│   └── Contact & Message Dispatch
-├── FAQ Accordion
-│   └── Expandable Questions (Kosten, Zuzahlung, Dauer, Absagen)
-├── Contact & Location Details
-│   ├── Direct Contact (Phone, Email, Hours)
-│   └── Accessible Location Card & Public Transport Directions
-└── Footer & Legal Navigation
-    ├── Practice Details & Emergency Notice
-    └── Links (Impressum, Datenschutz, Barrierefreiheit)
+├── Skip to Content Link (<a href="#main-content" class="skip-link">)
+├── Sticky Header & Glassmorphism Navigation
+│   ├── Vector Brand Logo (assets/icons/favicon.svg)
+│   ├── Desktop Nav Links (Therapiefelder, Ablauf, Über Vokalis, Bedarfs-Check, FAQ, Kontakt)
+│   ├── Quick CTA ("Termin anfragen")
+│   └── Mobile Hamburger & Off-Canvas Drawer (Focus Trap & ARIA Expanded)
+├── Main Landmark (<main id="main-content">)
+│   ├── Hero Section (#hero)
+│   │   ├── Badge, High-Impact Headline & Lead Text
+│   │   ├── Dual CTAs (Erstberatung, Leistungen)
+│   │   ├── Trust Feature Pills (Alle Kassen, Hausbesuche, Barrierefrei, Zertifiziert)
+│   │   └── Floating Showcase Card
+│   ├── Interactive Therapy Specialties (#therapien)
+│   │   ├── Category Filter Tabs (Alle, Kinder, Stimme, Neurologie, Redefluss)
+│   │   └── 6 Detail Cards (SES, MFT, Dysphonie, Aphasie, Dysphagie, Stottern)
+│   ├── 4-Step Treatment Roadmap (#ablauf)
+│   │   ├── Steps: Verordnung ➔ Termin ➔ Diagnostik ➔ Therapie
+│   │   └── Prescription Notice Banner (28-Tage-Regel)
+│   ├── Practice & Philosophy (#praxis)
+│   │   ├── Practice Values (Empathie, Evidenz, Hausbesuche, Interdisziplinär)
+│   │   └── Facility Highlights Box (Helle Räume, Diagnostik, Barrierefreiheit)
+│   ├── Interactive Consultation & Inquiry Assistant (#assistent)
+│   │   ├── Step 1: Patient Selection (Kind, Jugendlicher, Erwachsener, Neurologie)
+│   │   ├── Step 2: Symptom Area (Aussprache, Wortschatz, Stimme, Schlucken, Redefluss)
+│   │   ├── Step 3: Prescription Status (Rezept liegt vor, bestellt, Privat, Unklar)
+│   │   └── Step 4: Summary (Sanitized) & Contact Dispatch Form
+│   ├── FAQ Accordion (#faq)
+│   │   └── Expandable Q&A (Kostenübernahme, Gültigkeit, Dauer, Hausbesuche, Absagen)
+│   └── Contact & Location (#kontakt)
+│       ├── Direct Info Cards (Telefon, E-Mail, Adresse, Behandlungszeiten)
+│       └── Location & Public Transit Card + Google Maps Direct Route Link
+├── Footer
+│   ├── Brand & Philosophy Overview
+│   ├── Specialty & Navigation Links
+│   ├── Emergency Notice (116 117 / 112)
+│   └── Legal Links (Impressum, Datenschutz, Barrierefreiheit)
+└── Floating Mobile Action Bar
+    ├── Call Button (tel:+49...)
+    └── Appointment Inquiry Button (#assistent)
 ```
 
 ---
 
-## 4. Performance & Core Web Vitals Optimization
+## 5. Security Architecture & Data Protection
 
-* **Zero Render-Blocking Overhead:** No large external JavaScript frameworks.
-* **Font Optimization:** Modern font loading strategy with `font-display: swap` and local fallbacks.
-* **Image Delivery:** Scalable SVG vector icons and lightweight WebP visual assets.
-* **Preloading & Resource Hints:** Efficient `dns-prefetch` and `preconnect` for essential external fonts.
+1. **XSS Sanitization:** `js/main.js` processes all dynamic strings through `escapeHtml()` before rendering to DOM.
+2. **HTTP Equivalent Security Meta Tags:**
+   - `Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; frame-ancestors 'self';`
+   - `X-Content-Type-Options: nosniff`
+   - `Referrer-Policy: strict-origin-when-cross-origin`
+3. **Secret Isolation:**
+   - Credentials reside in `.env` (git-ignored).
+   - Automated secret-scanning step in CI workflow ([`.github/workflows/ci.yml`](file:///Users/andreasbild/IdeaProjects/vokalis/.github/workflows/ci.yml)).
 
 ---
 
-## 5. Schema.org JSON-LD Structured Data
+## 6. AWS S3 & CloudFront Deployment Pipeline
 
-The website implements rich Schema.org metadata for local healthcare businesses:
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "name": "Vokalis – Praxis für Logopädie & Sprachtherapie",
-  "url": "https://vokalis.de",
-  "medicalSpecialty": "SpeechPathology",
-  "currenciesAccepted": "EUR",
-  "paymentAccepted": "Gesetzliche und private Krankenversicherung, Selbstzahler"
-}
+### 6.1 Automation Script ([`scripts/deploy.py`](file:///Users/andreasbild/IdeaProjects/vokalis/scripts/deploy.py))
+* **Brotli Quality 11:** Encodes text files to `.br` in-memory and uploads to S3 with `Content-Encoding: br`.
+* **Payload Reduction:** Consistently achieves **> 80% compression** (121 KB -> 23.8 KB).
+* **MIME Types & Cache Headers:** Configures appropriate MIME types and immutable caching headers for static assets.
+* **CloudFront Invalidation:** Automatically creates an invalidation batch (`/*`) for distribution `E3QGOGTX8QE7DE`.
+
+### 6.2 Execution
+```bash
+# Standard deployment (uses .env or environment variables):
+.venv/bin/python scripts/deploy.py
+
+# With custom parameters:
+.venv/bin/python scripts/deploy.py --bucket vokalis.de --distribution-id E3QGOGTX8QE7DE
 ```
 
 ---
 
-## 6. Maintenance & Deployment
-* **Static Hosting Ready:** Can be hosted on any modern CDN / static web hosting (e.g. AWS S3 + CloudFront, Netlify, Vercel, GitHub Pages, or standard Nginx/Apache servers).
-* **Continuous Integration:** Validated on every PR via `.github/workflows/ci.yml`.
+## 7. SEO, PWA & Discovery
+
+* **Structured Data:** Embedded Schema.org `MedicalBusiness` / `MedicalClinic` JSON-LD.
+* **Sitemap & Robots:** Validated [`sitemap.xml`](file:///Users/andreasbild/IdeaProjects/vokalis/sitemap.xml) and [`robots.txt`](file:///Users/andreasbild/IdeaProjects/vokalis/robots.txt).
+* **PWA Support:** Validated [`manifest.json`](file:///Users/andreasbild/IdeaProjects/vokalis/manifest.json) and scalable SVG favicon ([`assets/icons/favicon.svg`](file:///Users/andreasbild/IdeaProjects/vokalis/assets/icons/favicon.svg)).
