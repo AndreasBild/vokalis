@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 Vokalis – High Performance AWS S3 Deployment, Brotli Compression & CloudFront Invalidation Pipeline
-- Pre-compresses all static assets (.html, .css, .js, .svg, .json) with Brotli (quality 11).
+- Pre-compresses all static assets (.html, .css, .js, .svg, .json, .xml, .txt) with Brotli (quality 11).
 - Synchronizes files to AWS S3 bucket with proper Content-Type, Content-Encoding: br, and Cache-Control.
 - Invalidates CloudFront cache (/*) upon successful S3 sync.
-- Supports AWS Profile (default: 'JavaSDKUser') and environment variables / .env.
+- Supports AWS Profile (default: 'JavaSDKUser'), environment variables, .env, and --dry-run.
 """
 
 import os
@@ -63,9 +63,14 @@ def get_mime_type(file_path: Path) -> str:
     return MIME_MAP.get(ext, mimetypes.guess_type(str(file_path))[0] or "application/octet-stream")
 
 def get_cache_control(file_path: Path) -> str:
+    # Service worker and HTML should always revalidate
+    if file_path.name == "sw.js":
+        return "public, max-age=0, must-revalidate"
     ext = file_path.suffix.lower()
     if ext == ".html":
         return "public, max-age=3600, must-revalidate"
+    if ext in [".xml", ".txt", ".json"]:
+        return "public, max-age=86400, must-revalidate"
     return "public, max-age=31536000, immutable"
 
 def get_aws_session(profile_name: str, region_name: str):
@@ -93,9 +98,10 @@ def collect_deployable_files(root_dir: Path):
             files.append(path)
     return files
 
-def compress_and_upload(s3_client, bucket_name: str, region_name: str, root_dir: Path):
+def compress_and_upload(s3_client, bucket_name: str, region_name: str, root_dir: Path, dry_run: bool = False):
     files = collect_deployable_files(root_dir)
-    print(f"\n🚀 Starting Deployment to AWS S3: s3://{bucket_name} ({region_name})")
+    mode_prefix = " [DRY-RUN]" if dry_run else ""
+    print(f"\n🚀 Starting Deployment{mode_prefix} to AWS S3: s3://{bucket_name} ({region_name})")
     print(f"📦 Total files to process: {len(files)}\n")
 
     compressible_exts = {".html", ".css", ".js", ".json", ".svg", ".xml", ".txt"}
@@ -118,38 +124,43 @@ def compress_and_upload(s3_client, bucket_name: str, region_name: str, root_dir:
             total_brotli_bytes += br_size
             ratio = (1 - (br_size / orig_size)) * 100
 
-            # Upload Brotli-compressed version to S3 with Content-Encoding: br
-            s3_client.put_object(
-                Bucket=bucket_name,
-                Key=s3_key,
-                Body=br_data,
-                ContentType=mime_type,
-                ContentEncoding="br",
-                CacheControl=cache_control
-            )
+            if not dry_run:
+                s3_client.put_object(
+                    Bucket=bucket_name,
+                    Key=s3_key,
+                    Body=br_data,
+                    ContentType=mime_type,
+                    ContentEncoding="br",
+                    CacheControl=cache_control
+                )
             print(f"  ⚡ [Brotli {ratio:4.1f}% saved] {s3_key:<30} ({orig_size} -> {br_size} bytes)")
         else:
             total_brotli_bytes += orig_size
-            s3_client.put_object(
-                Bucket=bucket_name,
-                Key=s3_key,
-                Body=raw_data,
-                ContentType=mime_type,
-                CacheControl=cache_control
-            )
+            if not dry_run:
+                s3_client.put_object(
+                    Bucket=bucket_name,
+                    Key=s3_key,
+                    Body=raw_data,
+                    ContentType=mime_type,
+                    CacheControl=cache_control
+                )
             print(f"  📄 [Uncompressed]     {s3_key:<30} ({orig_size} bytes)")
 
     overall_savings = (1 - (total_brotli_bytes / total_original_bytes)) * 100 if total_original_bytes > 0 else 0
     print("\n" + "=" * 60)
-    print(f"✅ S3 Deployment & Brotli Compression Complete!")
+    print(f"✅ S3 Deployment{mode_prefix} & Brotli Compression Complete!")
     print(f"📊 Total Size: {total_original_bytes:,} bytes ➔ {total_brotli_bytes:,} bytes ({overall_savings:.1f}% reduction)")
     print(f"🌐 S3 Target: s3://{bucket_name}/")
     print("=" * 60)
 
-def invalidate_cloudfront(cf_client, distribution_id: str):
+def invalidate_cloudfront(cf_client, distribution_id: str, dry_run: bool = False):
     if not distribution_id:
         print("\nℹ️ CloudFront Invalidation: No CLOUDFRONT_DISTRIBUTION_ID provided.")
         print("   Set CLOUDFRONT_DISTRIBUTION_ID in your .env or pass --distribution-id <ID> to invalidate cache automatically.")
+        return
+
+    if dry_run:
+        print(f"\nℹ️ [DRY-RUN] CloudFront Invalidation skipped for distribution: {distribution_id}")
         return
 
     print(f"\n🔄 Requesting CloudFront Cache Invalidation for distribution: {distribution_id}...")
@@ -181,6 +192,7 @@ def main():
     parser.add_argument("--region", default=DEFAULT_REGION, help=f"AWS Region (default: {DEFAULT_REGION})")
     parser.add_argument("--profile", default=DEFAULT_PROFILE, help=f"AWS CLI profile name (default: {DEFAULT_PROFILE})")
     parser.add_argument("--distribution-id", default=DEFAULT_DISTRIBUTION_ID, help="CloudFront Distribution ID to invalidate cache")
+    parser.add_argument("--dry-run", action="store_true", help="Simulate deployment and calculate Brotli compression savings without uploading to AWS")
     args = parser.parse_args()
 
     root_dir = Path(__file__).resolve().parent.parent
@@ -189,8 +201,8 @@ def main():
     s3_client = session.client("s3", region_name=args.region)
     cf_client = session.client("cloudfront", region_name=args.region)
 
-    compress_and_upload(s3_client, args.bucket, args.region, root_dir)
-    invalidate_cloudfront(cf_client, args.distribution_id)
+    compress_and_upload(s3_client, args.bucket, args.region, root_dir, dry_run=args.dry_run)
+    invalidate_cloudfront(cf_client, args.distribution_id, dry_run=args.dry_run)
 
     print(f"\n🎉 Deployment pipeline finished successfully!\n")
 

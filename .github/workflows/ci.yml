@@ -66,6 +66,7 @@ jobs:
               assert '<!DOCTYPE html>' in content, f'Missing DOCTYPE in {f}'
               assert '<html lang=\"de\">' in content, f'Missing lang in {f}'
               assert '<meta name=\"viewport\"' in content, f'Missing viewport in {f}'
+              assert 'skip-link' in content, f'Missing skip-link in {f}'
               print(f'✅ {f} verified.')
           "
 
@@ -81,8 +82,30 @@ jobs:
               sys.exit(1)
           data = json.loads(match.group(1))
           assert data['@context'] == 'https://schema.org'
-          assert data['@type'] == 'MedicalBusiness'
-          print(f'✅ Valid Schema.org detected: {data[\"@type\"]} ({data[\"name\"]})')
+          assert '@graph' in data or data.get('@type') == 'MedicalBusiness'
+          types = [item['@type'] for item in data.get('@graph', [data])]
+          assert 'MedicalBusiness' in types, 'Missing MedicalBusiness in Schema.org graph'
+          assert 'FAQPage' in types, 'Missing FAQPage in Schema.org graph'
+          print(f'✅ Valid Schema.org detected: {types}')
+          "
+
+      - name: Validate Internal Links & Anchor Integrity
+        run: |
+          echo "🔍 Validating all internal anchors and file references..."
+          python3 -c "
+          import re, os, sys
+          html_files = ['index.html', 'impressum.html', 'datenschutz.html']
+          for f in html_files:
+              content = open(f, encoding='utf-8').read()
+              ids = set(re.findall(r'id=[\"\x27]([a-zA-Z0-9_-]+)[\"\x27]', content))
+              anchors = re.findall(r'href=[\"\x27]#([a-zA-Z0-9_-]+)[\"\x27]', content)
+              for anchor in anchors:
+                  assert anchor in ids, f'Broken anchor #{anchor} in {f}'
+              
+              links = re.findall(r'href=[\"\x27]([a-zA-Z0-9_.-]+\.html)[\"\x27]', content)
+              for link in links:
+                  assert os.path.exists(link), f'Broken file link {link} in {f}'
+          print('✅ All internal links and section anchors are 100% valid.')
           "
 
       - name: Verify CSS Tokens & Performance Optimization
@@ -94,6 +117,21 @@ jobs:
           assert 'content-visibility: auto' in css, 'Missing content-visibility optimizations'
           assert '@media (prefers-reduced-motion: reduce)' in css, 'Missing a11y reduced motion query'
           print('✅ CSS tokens, a11y and performance rules verified.')
+          "
+
+      - name: Verify PWA, Sitemap, Service Worker & Favicon Assets
+        run: |
+          echo "🔍 Verifying PWA, SEO, Service Worker and asset files..."
+          python3 -c "
+          import os, json
+          assert os.path.exists('sitemap.xml'), 'Missing sitemap.xml'
+          assert os.path.exists('robots.txt'), 'Missing robots.txt'
+          assert os.path.exists('manifest.json'), 'Missing manifest.json'
+          assert os.path.exists('sw.js'), 'Missing sw.js'
+          assert os.path.exists('assets/icons/favicon.svg'), 'Missing assets/icons/favicon.svg'
+          manifest = json.load(open('manifest.json'))
+          assert manifest.get('name') and manifest.get('theme_color')
+          print('✅ PWA, SEO and vector assets verified.')
           "
 
       - name: Verify Deployment Pipeline Syntax
