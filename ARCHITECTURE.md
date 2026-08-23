@@ -30,7 +30,7 @@
 │                                       │ Invalidation (/*)              │
 │                                       ▼                                │
 │                     ┌───────────────────────────────────┐              │
-│                     │ CloudFront CDN (E3QGOGTX8QE7DE)   │              │
+│                     │ CloudFront CDN (E1234EXAMPLE)     │              │
 │                     └───────────────────────────────────┘              │
 └────────────────────────────────────────────────────────────────────────┘
 ```
@@ -127,7 +127,7 @@ index.html
 * **Brotli Quality 11:** Encodes text files to `.br` in-memory and uploads to S3 with `Content-Encoding: br`.
 * **Payload Reduction:** Consistently achieves **> 80% compression** (121 KB -> 23.8 KB).
 * **MIME Types & Cache Headers:** Configures appropriate MIME types and immutable caching headers for static assets.
-* **CloudFront Invalidation:** Automatically creates an invalidation batch (`/*`) for distribution `E3QGOGTX8QE7DE`.
+* **CloudFront Invalidation:** Automatically creates an invalidation batch (`/*`) for the configured distribution ID.
 
 ### 6.2 Execution
 ```bash
@@ -135,7 +135,7 @@ index.html
 .venv/bin/python scripts/deploy.py
 
 # With custom parameters:
-.venv/bin/python scripts/deploy.py --bucket vokalis.de --distribution-id E3QGOGTX8QE7DE
+.venv/bin/python scripts/deploy.py --bucket vokalis.de --distribution-id E1234567890EXAMPLE
 ```
 
 ---

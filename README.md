@@ -90,8 +90,8 @@ Erstellen Sie eine lokale `.env`-Datei im Projekt-Root (wird nicht in Git versio
 ```env
 S3_BUCKET_NAME=vokalis.de
 AWS_REGION=eu-central-1
-AWS_PROFILE=JavaSDKUser
-CLOUDFRONT_DISTRIBUTION_ID=E3QGOGTX8QE7DE
+AWS_PROFILE=default
+CLOUDFRONT_DISTRIBUTION_ID=E1234567890EXAMPLE
 ```
 
 ### 2. Deployment ausführen

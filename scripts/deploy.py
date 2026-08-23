@@ -4,7 +4,7 @@ Vokalis – High Performance AWS S3 Deployment, Brotli Compression & CloudFront 
 - Pre-compresses all static assets (.html, .css, .js, .svg, .json, .xml, .txt) with Brotli (quality 11).
 - Synchronizes files to AWS S3 bucket with proper Content-Type, Content-Encoding: br, and Cache-Control.
 - Invalidates CloudFront cache (/*) upon successful S3 sync.
-- Supports AWS Profile (default: 'JavaSDKUser'), environment variables, .env, and --dry-run.
+- Supports AWS Profile (via AWS_PROFILE or --profile), environment variables, .env, and --dry-run.
 """
 
 import os
@@ -37,7 +37,7 @@ except ImportError:
 # Default configuration
 DEFAULT_BUCKET = os.getenv("S3_BUCKET_NAME", "vokalis.de")
 DEFAULT_REGION = os.getenv("AWS_REGION", "eu-central-1")
-DEFAULT_PROFILE = os.getenv("AWS_PROFILE", "JavaSDKUser")
+DEFAULT_PROFILE = os.getenv("AWS_PROFILE", None)
 DEFAULT_DISTRIBUTION_ID = os.getenv("CLOUDFRONT_DISTRIBUTION_ID", "")
 
 # Content types mapping
