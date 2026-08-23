@@ -134,9 +134,10 @@ index.html
 # Standard deployment (uses .env or environment variables):
 .venv/bin/python scripts/deploy.py
 
-# With custom parameters:
-.venv/bin/python scripts/deploy.py --bucket vokalis.de --distribution-id E1234567890EXAMPLE
-```
+### 6.3 Pull Request Automation ([`scripts/create_pr.py`](file:///Users/andreasbild/IdeaProjects/vokalis/scripts/create_pr.py))
+* Automatically creates GitHub Pull Requests targeting `main` from current topic branches.
+* Resolves GitHub authorization tokens seamlessly from environment (`GITHUB_TOKEN`) or macOS keychain credential helper.
+* Enforces `.github/pull_request_template.md` quality checklists across agent workflows.
 
 ---
 
