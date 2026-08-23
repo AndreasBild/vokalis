@@ -1,0 +1,31 @@
+# Auto detect text files and normalize line endings to LF across OS & CI
+* text=auto eol=lf
+
+# Shell scripts and executables must strictly retain LF line endings
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Web source files and config
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Binary media assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

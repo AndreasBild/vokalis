@@ -1,0 +1,42 @@
+# Vokalis Logopädie - Git Ignore Configuration
+
+### Operating System ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.DS_Store
+
+### IDE & Editor Configuration ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+### AI Agents, Analysis & Scratchpads ###
+.junie/
+.qodana/
+scratch/
+*.tmp
+*.log
+*.bak
+
+### Build & Node Artifacts (if applicable) ###
+node_modules/
+dist/
+build/
+package-lock.json
+.npm/
+
+### Environment & Secrets (Local Overrides Only) ###
+.env
+.env.*
+!.env.example

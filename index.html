@@ -1,63 +1,1086 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vokalis Logopädiepraxis | Demnächst online</title>
-    <meta name="description" content="Vokalis - Ihre neue Logopädiepraxis für Sprach-, Sprech- und Stimmtherapie. Unsere Webseite befindet sich im Aufbau. Demnächst finden Sie hier alle Informationen.">
-    <meta name="robots" content="index, follow">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f0f8ff;
-            text-align: center;
-            color: #333;
-        }
-        .container {
-            max-width: 600px;
-            padding: 40px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #0056b3;
-            font-size: 2.5em;
-            margin-bottom: 0.5em;
-        }
-        p {
-            font-size: 1.2em;
-            line-height: 1.6;
-        }
-        a {
-            color: #0056b3;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .logo {
-            width: 150px;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vokalis – Praxis für Logopädie & Sprachtherapie</title>
+  <meta name="description" content="Moderne Logopädiepraxis für Kinder, Jugendliche und Erwachsene. Spezialisiert auf Sprach-, Sprech-, Stimm- und Schlucktherapie. Alle Kassen & Privat.">
+  <meta name="keywords" content="Logopädie, Sprachtherapie, Stimmtherapie, Kindersprache, Aphasie, Stottern, Schluckstörung, Dysphagie, Vokalis, Logopäde">
+  <meta name="author" content="Vokalis Logopädie">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f766e">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vokalis.de/">
+  <meta property="og:title" content="Vokalis – Praxis für Logopädie & Sprachtherapie">
+  <meta property="og:description" content="Stimme, Sprache, Selbstvertrauen. Moderne & einfühlsame logopädische Behandlungen für alle Altersgruppen.">
+  <meta property="og:image" content="https://vokalis.de/assets/images/og-preview.jpg">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vokalis – Praxis für Logopädie & Sprachtherapie">
+  <meta name="twitter:description" content="Moderne Logopädiepraxis für Sprach-, Sprech-, Stimm- und Schlucktherapie.">
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Vokalis – Praxis für Logopädie & Sprachtherapie",
+    "image": "https://vokalis.de/assets/images/logo.png",
+    "url": "https://vokalis.de",
+    "telephone": "+49-000-0000000",
+    "email": "kontakt@vokalis.de",
+    "priceRange": "$$",
+    "medicalSpecialty": "SpeechPathology",
+    "description": "Moderne Logopädiepraxis für Kinder, Jugendliche und Erwachsene. Spezialisiert auf Sprach-, Sprech-, Stimm- und Schlucktherapie sowie Hausbesuche.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Musterstraße 123",
+      "addressLocality": "Musterstadt",
+      "postalCode": "12345",
+      "addressCountry": "DE"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    ],
+    "paymentAccepted": "Gesetzliche Krankenversicherung, Private Krankenversicherung, Selbstzahler",
+    "currenciesAccepted": "EUR"
+  }
+  </script>
 </head>
 <body>
-<div class="container">
-    <h1><a href="https://vokalis.de/" title="vokalis.de">www.vokalis.de</a><br>
-        Praxis für Logopädie
-    </h1>
-    <p>
-        Hier entsteht die Internetseite der Logopädiepraxis <b>Vokalis</b>
 
-    </p>
-    <p>Bald gibt es mehr Infos!</p>
-</div>
+  <!-- =========================================================================
+       HEADER / NAVIGATION
+       ========================================================================= -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo" aria-label="Vokalis Praxis für Logopädie Startseite">
+        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="18" fill="#f0fdfa" stroke="#0f766e" stroke-width="2.5"/>
+          <path d="M12 20C12 15.5817 15.5817 12 20 12C24.4183 12 28 15.5817 28 20" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M15 22C15 19.2386 17.2386 17 20 17C22.7614 17 25 19.2386 25 22" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="20" cy="26" r="3" fill="#f97316"/>
+        </svg>
+        <span>Vokalis<span class="brand-highlight">.</span></span>
+        <span class="brand-tagline">Logopädie</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-desktop" aria-label="Hauptnavigation">
+        <a href="#therapien" class="nav-link">Therapiefelder</a>
+        <a href="#ablauf" class="nav-link">Ablauf & Verordnung</a>
+        <a href="#praxis" class="nav-link">Über Vokalis</a>
+        <a href="#assistent" class="nav-link">Bedarfs-Check</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#assistent" class="btn btn-primary btn-sm" style="display: none; @media (min-width: 640px) { display: inline-flex; }">
+          <span>Termin anfragen</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Menü öffnen" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Off-Canvas Drawer -->
+  <div class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Mobiles Navigationsmenü">
+    <div class="mobile-nav-links">
+      <a href="#therapien" class="mobile-nav-link">Therapiefelder</a>
+      <a href="#ablauf" class="mobile-nav-link">Ablauf & Verordnung</a>
+      <a href="#praxis" class="mobile-nav-link">Über Vokalis</a>
+      <a href="#assistent" class="mobile-nav-link">Bedarfs-Check & Termin</a>
+      <a href="#faq" class="mobile-nav-link">Häufige Fragen (FAQ)</a>
+      <a href="#kontakt" class="mobile-nav-link">Kontakt & Anfahrt</a>
+    </div>
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 1rem;">
+      <a href="#assistent" class="btn btn-accent btn-lg">Jetzt Erstgespräch anfragen</a>
+      <a href="tel:+49000000000" class="btn btn-outline">Direkt anrufen</a>
+    </div>
+  </div>
+  <div class="mobile-overlay"></div>
+
+  <main>
+    <!-- =======================================================================
+         HERO SECTION
+         ======================================================================= -->
+    <section id="hero" class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow-accent"></div>
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="hero-badge-pulse"></span>
+              <span class="hero-badge-text">Praxis für Logopädie & Sprachtherapie</span>
+            </div>
+
+            <h1 class="hero-title">
+              Stimme. Sprache. <br>
+              <span class="text-gradient">Selbstvertrauen.</span>
+            </h1>
+
+            <p class="hero-lead">
+              Willkommen bei <strong>Vokalis</strong>. Wir begleiten Kinder, Jugendliche und Erwachsene mit modernen, wissenschaftlich fundierten Therapiemethoden und viel Herz auf dem Weg zu klarer Sprache und starker Stimme.
+            </p>
+
+            <div class="hero-ctas">
+              <a href="#assistent" class="btn btn-accent btn-lg">
+                <span>Erstberatung anfragen</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+              <a href="#therapien" class="btn btn-outline btn-lg">
+                <span>Therapien entdecken</span>
+              </a>
+            </div>
+
+            <div class="hero-features">
+              <div class="hero-feat-item">
+                <svg class="hero-feat-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Alle Kassen & Privat</span>
+              </div>
+              <div class="hero-feat-item">
+                <svg class="hero-feat-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Hausbesuche möglich</span>
+              </div>
+              <div class="hero-feat-item">
+                <svg class="hero-feat-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Barrierefreie Praxis</span>
+              </div>
+              <div class="hero-feat-item">
+                <svg class="hero-feat-icon" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Zertifiziertes Team</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual Component -->
+          <div class="hero-visual">
+            <div class="hero-card-showcase">
+              <div class="hero-card-header">
+                <div class="hero-avatar">V</div>
+                <div>
+                  <h2 class="hero-card-title">Vokalis Logopädie</h2>
+                  <p class="hero-card-sub">Individuelle Therapiekonzepte</p>
+                </div>
+              </div>
+
+              <div class="hero-card-metrics">
+                <div class="metric-box">
+                  <div class="metric-num">100%</div>
+                  <div class="metric-label">Individuelle Betreuung</div>
+                </div>
+                <div class="metric-box">
+                  <div class="metric-num">0–99</div>
+                  <div class="metric-label">Für alle Altersstufen</div>
+                </div>
+              </div>
+
+              <div class="hero-card-pill">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Termine zeitnah & flexibel nach Vereinbarung</span>
+              </div>
+
+              <div class="floating-badge">
+                <div class="floating-badge-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div class="floating-badge-text">Heilmittelzulassung aller Kassen</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         THERAPY SPECIALTIES SECTION (INTERACTIVE FILTER)
+         ======================================================================= -->
+    <section id="therapien" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Unsere Schwerpunkte</span>
+          <h2 class="section-title">Moderne Therapiefelder im Überblick</h2>
+          <p class="section-subtitle">
+            Jede Stimme und jeder Mensch ist einzigartig. Wir bieten gezielte Diagnostik und evidenzbasierte Therapien für das gesamte logopädische Spektrum.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-container" role="tablist" aria-label="Therapiefelder filtern">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">Alle Bereiche</button>
+          <button class="filter-btn" data-filter="kinder" role="tab" aria-selected="false">Kinder & Jugendliche</button>
+          <button class="filter-btn" data-filter="stimme" role="tab" aria-selected="false">Stimmtherapie</button>
+          <button class="filter-btn" data-filter="erwachsene" role="tab" aria-selected="false">Neurologie & Erwachsene</button>
+          <button class="filter-btn" data-filter="redefluss" role="tab" aria-selected="false">Redefluss (Stottern)</button>
+        </div>
+
+        <!-- Therapy Cards Grid -->
+        <div class="therapies-grid">
+
+          <!-- Card 1: Kindersprache -->
+          <article class="therapy-card" data-category="kinder">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Pädiatrie</span>
+            <h3 class="therapy-card-title">Kindersprache & Entwicklung</h3>
+            <p class="therapy-card-desc">
+              Spielerische und motivierende Förderung bei Verzögerungen im Spracherwerb, Artikulationsstörungen und Wortschatzdefiziten.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Sprachentwicklungsverzögerung (SES / SEV)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Artikulationsstörungen / Aussprache (Dyslalie)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Late Talker Frühförderung (ab 2 Jahren)</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 2: Myofunktionelle Therapie -->
+          <article class="therapy-card" data-category="kinder">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Muskelfunktion</span>
+            <h3 class="therapy-card-title">Myofunktionelle Störung (MFT)</h3>
+            <p class="therapy-card-desc">
+              Gezieltes Muskeltraining für Zunge, Lippen und Mundraum – optimal abgestimmt mit Kieferorthopäden und Zahnärzten.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Fehlerhaftes Schluckmuster (Zungenstoß)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Mundatmung & unvollständiger Lippenschluss</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Begleitung kieferorthopädischer Behandlungen</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 3: Stimmtherapie -->
+          <article class="therapy-card" data-category="stimme">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Stimme & Klang</span>
+            <h3 class="therapy-card-title">Stimmtherapie (Dysphonie)</h3>
+            <p class="therapy-card-desc">
+              Behandlung von Heiserkeit, Stimmlosigkeit und Stimmermüdung. Spezielles Stimmtraining für Berufssprecher wie Lehrer, Erzieher und Trainer.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Funktionelle & organische Stimmstörungen</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Stimmlippenknötchen & Stimmlippenlähmung</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Atem- und Stimmhygiene für Sprechberufe</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 4: Neurologie (Aphasie & Dysarthrie) -->
+          <article class="therapy-card" data-category="erwachsene">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Neurologie</span>
+            <h3 class="therapy-card-title">Aphasie & Dysarthrie</h3>
+            <p class="therapy-card-desc">
+              Rehabilitation von Sprach- und Sprechfähigkeiten nach Schlaganfall, Schädel-Hirn-Trauma oder bei neurodegenerativen Erkrankungen.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Sprachverlust & Wortfindungsstörungen (Aphasie)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Sprechmotorik bei Morbus Parkinson / MS</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Sprechapraxie (Störung der Handlungsplanung)</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 5: Schluckstörungen -->
+          <article class="therapy-card" data-category="erwachsene">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Deglutition</span>
+            <h3 class="therapy-card-title">Schlucktherapie (Dysphagie)</h3>
+            <p class="therapy-card-desc">
+              Sicheres Schlucken wiedererlangen und Lebensqualität steigern. Diagnostik, Kostanpassung und Schutz vor Aspiration / Lungenentzündungen.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Häufiges Verschlucken & Hustenanfälle</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Dysphagie im Alter & nach Operationen</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Angehörigenberatung & Konsistenzanpassung</span>
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 6: Redeflussstörungen -->
+          <article class="therapy-card" data-category="redefluss">
+            <div class="therapy-card-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <line x1="8" y1="9" x2="16" y2="9"></line>
+                <line x1="8" y1="13" x2="14" y2="13"></line>
+              </svg>
+            </div>
+            <span class="therapy-card-tag">Redefluss</span>
+            <h3 class="therapy-card-title">Stottern & Poltern</h3>
+            <p class="therapy-card-desc">
+              Flüssiges und angstfreies Sprechen erlernen. Wir stärken Selbstvertrauen und vermitteln effektive Modifikations- und Fluency-Techniken.
+            </p>
+            <ul class="therapy-symptoms-list">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Stottern bei Kindern, Jugendlichen & Erwachsenen</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Poltern (überhastetes, undeutliches Sprechen)</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>Abbau von Sprechblockaden & Vermeidungsverhalten</span>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PROCESS & ROADMAP SECTION (ABLAUF & VERORDNUNG)
+         ======================================================================= -->
+    <section id="ablauf" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Ihr Weg zu uns</span>
+          <h2 class="section-title">In 4 einfachen Schritten zur Therapie</h2>
+          <p class="section-subtitle">
+            Logopädie ist ein ärztlich verordnetes Heilmittel. Wir begleiten Sie von der Ausstellung des Rezepts bis zum erfolgreichen Therapieabschluss.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          
+          <div class="process-card">
+            <div class="process-step-badge">1</div>
+            <h3 class="process-title">Ärztliche Verordnung</h3>
+            <p class="process-desc">
+              Ihr Arzt (Kinderarzt, HNO-Arzt, Neurologe, Kieferorthopäde oder Hausarzt) stellt Ihnen eine Heilmittelverordnung (Muster 13) aus.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step-badge">2</div>
+            <h3 class="process-title">Terminvereinbarung</h3>
+            <p class="process-desc">
+              Kontaktieren Sie uns telefonisch, per E-Mail oder über unseren Online-Bedarfsassistenten zur schnellen Ersttermin-Absprache.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step-badge">3</div>
+            <h3 class="process-title">Ausführliche Diagnostik</h3>
+            <p class="process-desc">
+              In der ersten Therapiestunde führen wir eine detaillierte Befunderhebung durch und definieren gemeinsam persönliche Therapieziele.
+            </p>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step-badge">4</div>
+            <h3 class="process-title">Individuelle Therapie</h3>
+            <p class="process-desc">
+              In regelmäßigen Einheiten (in der Regel 1–2x pro Woche à 45 Min.) arbeiten wir gezielt, alltagsnah und mit messbaren Fortschritten.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Prescription Info Callout -->
+        <div class="prescription-banner">
+          <div class="prescription-text">
+            <h3>Wichtiger Hinweis zur Gültigkeit</h3>
+            <p>
+              Gesetzliche Heilmittelverordnungen müssen in der Regel <strong>innerhalb von 28 Tagen</strong> nach dem Ausstellungsdatum begonnen werden. Melden Sie sich daher bitte zeitnah nach Erhalt Ihres Rezepts bei uns!
+            </p>
+          </div>
+          <a href="#assistent" class="btn btn-accent btn-lg">Rezept einreichen & anfragen</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         PRACTICE & PHILOSOPHY SECTION (ÜBER UNS)
+         ======================================================================= -->
+    <section id="praxis" class="section section-alt">
+      <div class="container">
+        <div class="practice-grid">
+          
+          <div class="practice-content">
+            <span class="section-tag">Über Vokalis</span>
+            <h2>Kompetenz, Vertrauen und moderne Therapiemethoden</h2>
+            <p>
+              In unserer Praxis steht der Mensch im Mittelpunkt. Ob Kleinkind, Jugendlicher oder Erwachsener – Sprach- und Stimmtherapie gelingt am besten in einer Atmosphäre von Sicherheit, Wertschätzung und professioneller Struktur.
+            </p>
+            <p>
+              Wir verbinden aktuelle wissenschaftliche Standards mit erprobten interaktiven Methoden, damit Übungen nicht nur effektiv sind, sondern auch Freude machen und nachhaltig im Alltag ankommen.
+            </p>
+
+            <div class="values-list">
+              <div class="value-item">
+                <div class="value-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <div class="value-text">
+                  <h4>Einfühlsam & Geduldig</h4>
+                  <p>Therapie ohne Leistungsdruck in geschütztem Rahmen.</p>
+                </div>
+              </div>
+
+              <div class="value-item">
+                <div class="value-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div class="value-text">
+                  <h4>Evidenzbasiert</h4>
+                  <p>Regelmäßige Fortbildungen nach neuesten Leitlinien.</p>
+                </div>
+              </div>
+
+              <div class="value-item">
+                <div class="value-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <div class="value-text">
+                  <h4>Hausbesuche</h4>
+                  <p>Bei medizinischer Indikation auch direkt vor Ort.</p>
+                </div>
+              </div>
+
+              <div class="value-item">
+                <div class="value-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div class="value-text">
+                  <h4>Interdisziplinär</h4>
+                  <p>Enge Zusammenarbeit mit Ärzten, Schulen & Therapeuten.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-visual-box">
+            <h3>Ihre Wohlfühlpraxis</h3>
+            <div class="highlight-points">
+              <div class="highlight-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Helle, freundliche und barrierefreie Therapieräume</span>
+              </div>
+              <div class="highlight-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Moderne therapeutische Diagnostik- & Fördermedien</span>
+              </div>
+              <div class="highlight-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Entspannter Wartebereich für Eltern & Begleitpersonen</span>
+              </div>
+              <div class="highlight-point">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                <span>Gute Erreichbarkeit mit PKW & öffentlichen Verkehrsmitteln</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         INTERACTIVE APPOINTMENT & INQUIRY ASSISTANT
+         ======================================================================= -->
+    <section id="assistent" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Bedarfs-Check & Terminanfrage</span>
+          <h2 class="section-title">Finden Sie das passende Angebot</h2>
+          <p class="section-subtitle">
+            Beantworten Sie 3 kurze Fragen – unser Assistent bereitet Ihre Anfrage optimal vor und beschleunigt die Terminvereinbarung.
+          </p>
+        </div>
+
+        <div class="assistant-card">
+          <!-- Step Progress -->
+          <div class="assistant-progress">
+            <div class="step-indicator active" data-step="1">
+              <div class="step-circle">1</div>
+              <span class="step-title">Patient</span>
+            </div>
+            <div class="step-indicator" data-step="2">
+              <div class="step-circle">2</div>
+              <span class="step-title">Schwerpunkt</span>
+            </div>
+            <div class="step-indicator" data-step="3">
+              <div class="step-circle">3</div>
+              <span class="step-title">Rezept</span>
+            </div>
+            <div class="step-indicator" data-step="4">
+              <div class="step-circle">4</div>
+              <span class="step-title">Kontakt</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Patient Type -->
+          <div class="assistant-step active" data-step="1">
+            <h3 class="step-question">Für wen suchen Sie eine logopädische Behandlung?</h3>
+            <p class="step-hint">Wählen Sie die zutreffende Altersgruppe aus:</p>
+
+            <div class="options-grid">
+              <div class="option-card" data-category="patient" data-value="Kind (unter 6 Jahre)">
+                <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2a5 5 0 0 1 5 5v1a5 5 0 0 1-10 0V7a5 5 0 0 1 5-5z"></path>
+                  <path d="M2 20a10 10 0 0 1 20 0"></path>
+                </svg>
+                <div class="option-title">Kleinkind / Kindergartenkind</div>
+                <div class="option-desc">Unter 6 Jahre (z.B. Late Talker, Aussprache, Myofunktion)</div>
+              </div>
+
+              <div class="option-card" data-category="patient" data-value="Schulkind / Jugendlicher">
+                <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div class="option-title">Schulkind / Jugendlicher</div>
+                <div class="option-desc">6 bis 18 Jahre (z.B. Grammatik, Stottern, LRS-Begleitung)</div>
+              </div>
+
+              <div class="option-card" data-category="patient" data-value="Erwachsener (Stimme / Sprechberuf)">
+                <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                </svg>
+                <div class="option-title">Erwachsener (Stimme / Sprechen)</div>
+                <div class="option-desc">Heiserkeit, Berufssprecher, Stimmtraining, Stottern</div>
+              </div>
+
+              <div class="option-card" data-category="patient" data-value="Erwachsener (Neurologie / Schlucken)">
+                <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                </svg>
+                <div class="option-title">Erwachsener (Neurologie / Dysphagie)</div>
+                <div class="option-desc">Nach Schlaganfall, Parkinson, Schluckbeschwerden</div>
+              </div>
+            </div>
+
+            <div class="assistant-nav">
+              <div></div>
+              <button class="btn btn-primary btn-step-next" disabled>Weiter zur Thematik</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Symptom / Need Area -->
+          <div class="assistant-step" data-step="2">
+            <h3 class="step-question">Welcher Themenschwerpunkt liegt vor?</h3>
+            <p class="step-hint">Wählen Sie den primären Grund für die Therapie:</p>
+
+            <div class="options-grid">
+              <div class="option-card" data-category="symptom" data-value="Aussprache & Lautbildung (Dyslalie)">
+                <div class="option-title">Aussprache / Laute</div>
+                <div class="option-desc">Einzelne Laute wie /s/, /sch/, /k/ werden ausgelassen oder vertauscht.</div>
+              </div>
+              <div class="option-card" data-category="symptom" data-value="Wortschatz & Grammatik">
+                <div class="option-title">Sprachverständnis & Satzbau</div>
+                <div class="option-desc">Geringer Wortschatz, unvollständige Sätze, Grammatikschwierigkeiten.</div>
+              </div>
+              <div class="option-card" data-category="symptom" data-value="Stimmüberlastung & Heiserkeit">
+                <div class="option-title">Stimme & Heiserkeit</div>
+                <div class="option-desc">Stimme klingt rau, ermüdet schnell oder bricht weg.</div>
+              </div>
+              <div class="option-card" data-category="symptom" data-value="Schlucken & Muskelbalance (MFT / Dysphagie)">
+                <div class="option-title">Schlucken & Mundmuskulatur</div>
+                <div class="option-desc">Falsches Schlucken, Zungenfehllage oder Dysphagie.</div>
+              </div>
+              <div class="option-card" data-category="symptom" data-value="Redefluss (Stottern / Poltern)">
+                <div class="option-title">Stottern oder Poltern</div>
+                <div class="option-desc">Wiederholungen, Dehnungen, Blockaden oder hastiges Sprechen.</div>
+              </div>
+              <div class="option-card" data-category="symptom" data-value="Neurologische Rehabilitation (Aphasie)">
+                <div class="option-title">Neurologische Sprachtherapie</div>
+                <div class="option-desc">Wiedererlernen von Sprache und Sprachverständnis nach Schlaganfall.</div>
+              </div>
+            </div>
+
+            <div class="assistant-nav">
+              <button class="btn btn-outline btn-step-prev">Zurück</button>
+              <button class="btn btn-primary btn-step-next" disabled>Weiter zum Rezeptstatus</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Prescription Status -->
+          <div class="assistant-step" data-step="3">
+            <h3 class="step-question">Liegt bereits eine ärztliche Verordnung vor?</h3>
+            <p class="step-hint">Die Heilmittelverordnung ist für die Kostenübernahme erforderlich:</p>
+
+            <div class="options-grid">
+              <div class="option-card" data-category="prescription" data-value="Ja, Heilmittelverordnung liegt vor">
+                <div class="option-title">Ja, Verordnung liegt vor</div>
+                <div class="option-desc">Ich habe bereits ein gültiges Rezept vom Arzt erhalten.</div>
+              </div>
+              <div class="option-card" data-category="prescription" data-value="Rezept ist beim Arzt bestellt / geplant">
+                <div class="option-title">Arzttermin ist vereinbart</div>
+                <div class="option-desc">Die Verordnung wird in Kürze vom Arzt ausgestellt.</div>
+              </div>
+              <div class="option-card" data-category="prescription" data-value="Privatpatient / Selbstzahler">
+                <div class="option-title">Privat / Selbstzahler</div>
+                <div class="option-desc">Privatrezept oder präventives Stimmtraining / Coaching.</div>
+              </div>
+              <div class="option-card" data-category="prescription" data-value="Noch unklar / Bitte um Beratung">
+                <div class="option-title">Noch unklar</div>
+                <div class="option-desc">Ich benötige Beratung zum Ablauf der Verordnung.</div>
+              </div>
+            </div>
+
+            <div class="assistant-nav">
+              <button class="btn btn-outline btn-step-prev">Zurück</button>
+              <button class="btn btn-primary btn-step-next" disabled>Zur Terminanfrage</button>
+            </div>
+          </div>
+
+          <!-- Step 4: Contact Dispatch -->
+          <div class="assistant-step" data-step="4">
+            <h3 class="step-question">Ihre Terminanfrage abschließen</h3>
+            <p class="step-hint">Ihre Angaben wurden zusammengefasst:</p>
+
+            <div id="assistant-summary-text" style="background-color: var(--primary-subtle); padding: 1rem 1.25rem; border-radius: var(--radius-md); border-left: 3px solid var(--primary); font-size: 0.95rem; margin-bottom: 2rem; color: var(--primary-darkest);">
+              <!-- Populated via JavaScript -->
+            </div>
+
+            <form id="contact-form">
+              <input type="hidden" id="contact-subject" name="subject" value="Therapieanfrage">
+
+              <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="contact-name" class="form-label">Vor- und Nachname *</label>
+                  <input type="text" id="contact-name" class="form-input" placeholder="z.B. Anna Schmidt" required>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="contact-phone" class="form-label">Telefonnummer *</label>
+                  <input type="tel" id="contact-phone" class="form-input" placeholder="Für schnelle Terminabsprache" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label for="contact-email" class="form-label">E-Mail-Adresse *</label>
+                  <input type="email" id="contact-email" class="form-input" placeholder="ihre-mail@beispiel.de" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Ihre Nachricht / Wunschzeiten</label>
+                <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Teilen Sie uns gerne Ihre Wunschtage oder weitere Details mit..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-checkbox-label">
+                  <input type="checkbox" id="contact-privacy" required>
+                  <span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> zur Kenntnis genommen und willige in die Verarbeitung meiner Daten zur Bearbeitung der Terminanfrage ein. *</span>
+                </label>
+              </div>
+
+              <div class="assistant-nav">
+                <button type="button" class="btn btn-outline btn-step-prev">Zurück</button>
+                <button type="submit" class="btn btn-accent btn-lg">Anfrage jetzt unverbindlich senden</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         FAQ SECTION (ACCORDION)
+         ======================================================================= -->
+    <section id="faq" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Transparenz & Information</span>
+          <h2 class="section-title">Häufig gestellte Fragen (FAQ)</h2>
+          <p class="section-subtitle">
+            Antworten auf die wichtigsten Fragen rund um Verordnung, Kostenübernahme und Ablauf einer logopädischen Behandlung.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Wer übernimmt die Kosten für die Logopädie?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Logopädie ist ein anerkanntes medizinisches Heilmittel. Bei Kindern und Jugendlichen bis zum 18. Lebensjahr übernimmt die <strong>gesetzliche Krankenkasse 100 % der Kosten</strong>. Bei Erwachsenen ab 18 Jahren besteht die gesetzliche Zuzahlungspflicht (10 € Rezeptgebühr + 10 % der Behandlungskosten), sofern keine Zuzahlungsbefreiung vorliegt. Private Krankenversicherungen und Beihilfestellen erstatten die Kosten gemäß individuellem Tarif.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Wie lange ist eine Heilmittelverordnung gültig?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Eine Verordnung für gesetzlich Versicherte (Muster 13) muss spätestens <strong>28 Kalendertage nach dem Ausstellungsdatum</strong> begonnen werden, es sei denn, der Arzt hat auf dem Rezept einen abweichenden spätesten Behandlungsbeginn vermerkt.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Wie lange dauert eine Therapieeinheit und wie oft findet sie statt?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                In der Regel dauert eine Therapieeinheit <strong>45 Minuten</strong> (gelegentlich 30 oder 60 Minuten, je nach ärztlicher Verordnung). Die Behandlungen finden meist 1- bis 2-mal wöchentlich statt. Eine Verordnung umfasst typischerweise 10 Therapieeinheiten.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Bieten Sie auch Hausbesuche an?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Ja! Wenn Patienten aus medizinischen Gründen (z.B. nach einem Schlaganfall oder bei Gehbehinderung) nicht in unsere Praxis kommen können, kann der Arzt einen Hausbesuch verordnen. Wir behandeln Sie dann direkt zu Hause oder in einer Pflegeeinrichtung.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Was passiert, wenn ich einen Termin absagen muss?</span>
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer">
+              <p>
+                Wir führen eine reine Bestellpraxis mit reservierten Zeitfenstern für jeden Patienten. Sollten Sie einen Termin nicht wahrnehmen können, sagen Sie diesen bitte mindestens <strong>24 Stunden vorher</strong> telefonisch oder per E-Mail ab.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         CONTACT & LOCATION SECTION
+         ======================================================================= -->
+    <section id="kontakt" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Kontakt & Anfahrt</span>
+          <h2 class="section-title">Wir freuen uns auf Sie</h2>
+          <p class="section-subtitle">
+            Haben Sie Fragen oder möchten Sie direkt einen Termin vereinbaren? Melden Sie sich gerne bei uns.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <div class="contact-cards">
+            
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h4>Telefon</h4>
+                <p><a href="tel:+49000000000">+49 (0) 000 - 000 00 00</a></p>
+                <p style="font-size: 0.825rem; color: var(--text-muted); margin-top: 2px;">Während Therapiesitzungen ist der Anrufbeantworter aktiv – wir rufen zuverlässig zurück!</p>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h4>E-Mail</h4>
+                <p><a href="mailto:kontakt@vokalis.de">kontakt@vokalis.de</a></p>
+                <p style="font-size: 0.825rem; color: var(--text-muted); margin-top: 2px;">Antwort in der Regel innerhalb von 24 Stunden</p>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h4>Praxisadresse</h4>
+                <p><strong>Vokalis Praxis für Logopädie</strong></p>
+                <p>Musterstraße 123, 12345 Musterstadt</p>
+                <p style="font-size: 0.825rem; color: var(--text-muted); margin-top: 2px;">Barrierefreier Zugang mit Aufzug & Patientenparkplätzen</p>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="contact-details">
+                <h4>Behandlungszeiten</h4>
+                <p>Montag – Donnerstag: 08:00 – 18:00 Uhr</p>
+                <p>Freitag: 08:00 – 15:00 Uhr</p>
+                <p style="font-size: 0.825rem; color: var(--text-muted); margin-top: 2px;">Samstags & Hausbesuche nach individueller Absprache</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Location Information & Map Box -->
+          <div class="contact-form-box">
+            <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--secondary); margin-bottom: 1rem;">Anfahrt & Parkmöglichkeiten</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+              Unsere Praxis befindet sich in zentraler, ruhiger Lage. Für Patienten mit Gehbehinderungen steht ein stufenloser, rollstuhlgerechter Eingang mit Aufzug zur Verfügung.
+            </p>
+            
+            <div style="background-color: var(--bg-subtle); border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+              <h4 style="font-size: 1rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">Öffentliche Verkehrsmittel</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+                Haltestelle <strong>"Musterplatz"</strong> (Buslinien 101, 102 & Tram 4) nur 2 Gehminuten entfernt.
+              </p>
+              <h4 style="font-size: 1rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.5rem;">Anfahrt mit dem PKW</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0;">
+                Kostenfreie Patientenparkplätze direkt im Innenhof sowie Parkstreifen an der Straße.
+              </p>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="width: 100%;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                <line x1="9" y1="3" x2="9" y2="18"></line>
+                <line x1="15" y1="6" x2="15" y2="21"></line>
+              </svg>
+              <span>Route in Google Maps öffnen</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-brand">
+          <div class="brand-logo" style="color: #ffffff; margin-bottom: 1rem;">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18" fill="#134e4a" stroke="#2dd4bf" stroke-width="2.5"/>
+              <path d="M12 20C12 15.5817 15.5817 12 20 12C24.4183 12 28 15.5817 28 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+              <path d="M15 22C15 19.2386 17.2386 17 20 17C22.7614 17 25 19.2386 25 22" stroke="#2dd4bf" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="20" cy="26" r="3" fill="#f97316"/>
+            </svg>
+            <span>Vokalis<span style="color: var(--primary-lighter);">.</span></span>
+          </div>
+          <p>
+            Praxis für Logopädie & Sprachtherapie. Einfühlsame Diagnostik und moderne Therapien für Kinder, Jugendliche und Erwachsene in jedem Lebensabschnitt.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Therapiebereiche</h4>
+          <ul class="footer-links">
+            <li><a href="#therapien" class="footer-link">Kindersprache & SEV</a></li>
+            <li><a href="#therapien" class="footer-link">Myofunktionelle Störung</a></li>
+            <li><a href="#therapien" class="footer-link">Stimmtherapie (Dysphonie)</a></li>
+            <li><a href="#therapien" class="footer-link">Neurologie (Aphasie)</a></li>
+            <li><a href="#therapien" class="footer-link">Schlucktherapie (Dysphagie)</a></li>
+            <li><a href="#therapien" class="footer-link">Redefluss & Stottern</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Patienten-Infos</h4>
+          <ul class="footer-links">
+            <li><a href="#ablauf" class="footer-link">Ablauf & Verordnung</a></li>
+            <li><a href="#assistent" class="footer-link">Bedarfs-Check & Anfrage</a></li>
+            <li><a href="#faq" class="footer-link">Häufige Fragen (FAQ)</a></li>
+            <li><a href="#kontakt" class="footer-link">Anfahrt & Praxiszeiten</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Rechtliches & Praxis</h4>
+          <ul class="footer-links">
+            <li><a href="impressum.html" class="footer-link">Impressum</a></li>
+            <li><a href="datenschutz.html" class="footer-link">Datenschutzerklärung</a></li>
+            <li><a href="datenschutz.html#barrierefreiheit" class="footer-link">Barrierefreiheit</a></li>
+          </ul>
+          <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-light); border-left: 2px solid var(--accent); padding-left: 0.75rem;">
+            <strong>Hinweis für Notfälle:</strong> Bei akuten Notfällen wenden Sie sich bitte an den ärztlichen Bereitschaftsdienst unter <strong>116 117</strong> oder den Notruf <strong>112</strong>.
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Vokalis Praxis für Logopädie. Alle Rechte vorbehalten.
+        </div>
+        <div>
+          Webseite realisiert nach modernen Web- & Barrierefreiheitsstandards.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       FLOATING MOBILE QUICK-ACTION BAR
+       ========================================================================= -->
+  <div class="mobile-action-bar">
+    <a href="tel:+49000000000" class="btn btn-outline btn-sm">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+      <span>Anrufen</span>
+    </a>
+    <a href="#assistent" class="btn btn-accent btn-sm">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      <span>Terminanfrage</span>
+    </a>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
 </body>
 </html>
