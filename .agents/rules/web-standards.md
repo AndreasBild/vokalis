@@ -1,15 +1,22 @@
-# Web Standards & Code Quality Invariants
+# Web Standards, Performance & Deployment Invariants
 
 1. **Vanilla Architecture First:**
-   - Implement solutions using semantic HTML5, modern CSS3, and ES6+ vanilla JavaScript.
-   - Avoid pulling heavy external libraries unless explicitly approved.
+   - Implement all UI components with semantic HTML5, modern CSS3 custom properties, and lightweight ES6+ vanilla JavaScript.
+   - Zero heavy external runtime frameworks (React, Vue, jQuery).
 
-2. **CSS Design Tokens & Styling Rules:**
-   - Always reference predefined CSS variables in `css/style.css` (`var(--primary)`, `var(--text-main)`, etc.) instead of hardcoding raw color hex values.
-   - Keep styling modular, readable, and responsive.
-   - Use CSS Grid and Flexbox for layouts; avoid float or fixed-pixel absolute positioning that breaks on varying viewports.
+2. **CSS Design Tokens & Layout Rules:**
+   - Always reference predefined CSS variables in `css/style.css` (`var(--primary)`, `var(--accent)`, `var(--text-main)`, etc.) instead of hardcoding raw hex values.
+   - Use CSS Grid and Flexbox for responsive layouts.
+   - Use `content-visibility: auto; contain-intrinsic-size: 1px 700px;` on offscreen sections.
+   - Support `@media (prefers-reduced-motion: reduce)`.
 
-3. **Performance & Core Web Vitals:**
-   - Maintain fast LCP (Largest Contentful Paint) and INP (Interaction to Next Paint).
-   - Use SVG for vector icons and modern WebP/optimized formats for raster imagery.
-   - Defer non-critical JavaScript and ensure scripts load asynchronously (`defer`).
+3. **Core Web Vitals & Loading Performance:**
+   - Zero layout shifts (CLS = 0) with explicit width/height/viewBox attributes.
+   - Pure local system font stacks (0ms remote font network delay, 100% DSGVO compliant).
+   - Use Speculation Rules API for instant subpage prerendering (`impressum.html`, `datenschutz.html`).
+   - Passive event listeners (`{ passive: true }`) and RAF-throttled scroll handlers.
+
+4. **Brotli & AWS S3/CloudFront Deployment:**
+   - Pre-compress static assets using `scripts/deploy.py` with Brotli Quality 11 (`Content-Encoding: br`).
+   - Set immutable cache headers for static assets and revalidation headers for HTML.
+   - Automatically trigger CloudFront cache invalidation (`/*`) upon S3 synchronization.
