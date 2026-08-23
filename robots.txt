@@ -1,0 +1,5 @@
+# robots.txt for https://vokalis.de/
+User-agent: *
+Allow: /
+
+Sitemap: https://vokalis.de/sitemap.xml
