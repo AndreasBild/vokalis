@@ -108,7 +108,8 @@ python3 -m venv .venv
 
 ## 🤖 AI Agent Governance & Richtlinien
 
-Für die Zusammenarbeit mit AI-Agenten (Antigravity, Jules) gelten strenge Qualitätsstandards:
+Für die Zusammenarbeit mit AI-Agenten (Antigravity, Rope, Jules) gelten strenge Qualitätsstandards:
 * **Workflow & Rollen:** siehe [`AGENTS.md`](file:///Users/andreasbild/IdeaProjects/vokalis/AGENTS.md).
 * **Technische Spezifikation:** siehe [`ARCHITECTURE.md`](file:///Users/andreasbild/IdeaProjects/vokalis/ARCHITECTURE.md).
 * **PR-Checkliste:** siehe [`.github/pull_request_template.md`](file:///Users/andreasbild/IdeaProjects/vokalis/.github/pull_request_template.md).
+* **Automatisierter PR-Workflow:** AI-Agenten erstellen Pull Requests autonom über [`scripts/create_pr.py`](file:///Users/andreasbild/IdeaProjects/vokalis/scripts/create_pr.py).

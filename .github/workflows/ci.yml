@@ -134,8 +134,9 @@ jobs:
           print('✅ PWA, SEO and vector assets verified.')
           "
 
-      - name: Verify Deployment Pipeline Syntax
+      - name: Verify Deployment & Automation Script Syntax
         run: |
-          echo "🔍 Compiling scripts/deploy.py..."
+          echo "🔍 Compiling automation scripts..."
           python3 -m py_compile scripts/deploy.py
-          echo "✅ scripts/deploy.py compiled cleanly."
+          python3 -m py_compile scripts/create_pr.py
+          echo "✅ Automation scripts compiled cleanly."

@@ -75,7 +75,7 @@ flowchart LR
 
 ### Stage 6: Deployment & Pull Request
 * Run `.venv/bin/python scripts/deploy.py` to deploy to S3 with Brotli compression and trigger CloudFront invalidation.
-* Create PR using `.github/pull_request_template.md`.
+* **Automated Pull Request:** Create and submit the PR automatically using `.venv/bin/python scripts/create_pr.py --title "..." --body "..."` following the `.github/pull_request_template.md` standard.
 
 ---
 
@@ -107,7 +107,8 @@ vokalis/
 ├── assets/
 │   └── icons/                 # SVG vector assets & favicon.svg
 ├── scripts/
-│   └── deploy.py              # S3 sync + Brotli compression + CloudFront invalidation
+│   ├── deploy.py              # S3 sync + Brotli compression + CloudFront invalidation
+│   └── create_pr.py           # Automated GitHub Pull Request creation helper
 ├── index.html                 # Main landing page & interactive consultation assistant
 ├── impressum.html             # Legal imprint (§ 5 TMG)
 └── datenschutz.html           # Privacy policy (DSGVO) & accessibility declaration
