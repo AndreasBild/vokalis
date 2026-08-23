@@ -1,6 +1,7 @@
 /**
  * VOKALIS LOGOPÄDIE – INTERACTIVE JAVASCRIPT
  * Vanilla ES6+ without external runtime dependencies.
+ * Optimized for Core Web Vitals, INP, and strict security (XSS prevention).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,23 +13,43 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
 });
 
+/**
+ * Sanitize strings to prevent XSS
+ */
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 /* --------------------------------------------------------------------------
-   1. Sticky Header with Scroll Detection
+   1. Sticky Header with Throttled / Passive Scroll Detection
    -------------------------------------------------------------------------- */
 function initStickyHeader() {
   const header = document.querySelector('.header');
   if (!header) return;
 
-  const handleScroll = () => {
-    if (window.scrollY > 20) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+  let ticking = false;
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 20) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        ticking = false;
+      });
+      ticking = true;
     }
   };
 
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }
 
 /* --------------------------------------------------------------------------
@@ -88,8 +109,12 @@ function initTherapyFilter() {
 
   filterButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filterButtons.forEach((b) => b.classList.remove('active'));
+      filterButtons.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
 
       const filterValue = btn.getAttribute('data-filter');
 
@@ -97,7 +122,6 @@ function initTherapyFilter() {
         const cardCategory = card.getAttribute('data-category');
         if (filterValue === 'all' || cardCategory === filterValue) {
           card.style.display = 'flex';
-          card.style.animation = 'fadeIn 0.35s ease-in-out';
         } else {
           card.style.display = 'none';
         }
@@ -128,7 +152,6 @@ function initInteractiveAssistant() {
     card.addEventListener('click', () => {
       const step = card.closest('.assistant-step');
       const stepIndex = parseInt(step.getAttribute('data-step'), 10);
-      const category = card.getAttribute('data-category');
       const value = card.getAttribute('data-value');
 
       // Clear previous selection in this step
@@ -161,29 +184,29 @@ function initInteractiveAssistant() {
       activeStepElem.classList.add('active');
     }
 
-    // On final summary step (Step 4), update summary values
+    // On final summary step (Step 4), update summary values safely
     if (targetStep === 4) {
       const summaryElem = document.getElementById('assistant-summary-text');
       const subjectInput = document.getElementById('contact-subject');
       const messageInput = document.getElementById('contact-message');
 
-      const patientLabel = formData.patientType || 'Nicht angegeben';
-      const symptomLabel = formData.symptomArea || 'Allgemeine Anfrage';
-      const prescriptionLabel = formData.prescriptionStatus || 'Offen';
+      const safePatient = escapeHtml(formData.patientType || 'Nicht angegeben');
+      const safeSymptom = escapeHtml(formData.symptomArea || 'Allgemeine Anfrage');
+      const safePrescription = escapeHtml(formData.prescriptionStatus || 'Offen');
 
       if (summaryElem) {
         summaryElem.innerHTML = `
-          <strong>Patient:</strong> ${patientLabel} &bull; 
-          <strong>Bereich:</strong> ${symptomLabel} &bull; 
-          <strong>Ärztliche Verordnung:</strong> ${prescriptionLabel}
+          <strong>Patient:</strong> ${safePatient} &bull; 
+          <strong>Bereich:</strong> ${safeSymptom} &bull; 
+          <strong>Ärztliche Verordnung:</strong> ${safePrescription}
         `;
       }
 
       if (subjectInput) {
-        subjectInput.value = `Therapieanfrage: ${patientLabel} (${symptomLabel})`;
+        subjectInput.value = `Therapieanfrage: ${formData.patientType || ''} (${formData.symptomArea || ''})`;
       }
       if (messageInput && !messageInput.value) {
-        messageInput.value = `Hallo Vokalis-Team,\n\nich interessiere mich für eine logopädische Behandlung für: ${patientLabel}.\nBereich: ${symptomLabel}\nRezeptstatus: ${prescriptionLabel}.\n\nBitte nehmen Sie bezüglich eines Erstgesprächs Kontakt mit mir auf.`;
+        messageInput.value = `Hallo Vokalis-Team,\n\nich interessiere mich für eine logopädische Behandlung für: ${formData.patientType || ''}.\nBereich: ${formData.symptomArea || ''}\nRezeptstatus: ${formData.prescriptionStatus || ''}.\n\nBitte nehmen Sie bezüglich eines Erstgesprächs Kontakt mit mir auf.`;
       }
     }
   }
@@ -260,8 +283,6 @@ function initContactForm() {
     }
 
     const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-
     submitBtn.innerHTML = `
       <svg style="width:18px;height:18px;animation:spin 1s linear infinite;margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
@@ -284,9 +305,9 @@ function initContactForm() {
           <p style="color: var(--text-secondary); max-width: 480px; margin: 0 auto 1.5rem; line-height: 1.6;">
             Wir haben Ihre Nachricht erhalten und werden uns zeitnah mit Ihnen für eine Terminabsprache in Verbindung setzen.
           </p>
-          <button class="btn btn-outline btn-sm" onclick="location.reload()">Weitere Anfrage senden</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="location.reload()">Weitere Anfrage senden</button>
         </div>
       `;
-    }, 900);
+    }, 800);
   });
 }

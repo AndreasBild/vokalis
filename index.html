@@ -30,6 +30,19 @@
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- Speculation Rules API for Instant Prerendering -->
+  <script type="application/speculationrules">
+  {
+    "prerender": [
+      {
+        "source": "list",
+        "urls": ["impressum.html", "datenschutz.html"],
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
+
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {

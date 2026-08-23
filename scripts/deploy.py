@@ -62,7 +62,7 @@ def get_s3_client():
 
 def collect_deployable_files(root_dir: Path):
     exclude_dirs = {".git", ".idea", ".agents", ".github", ".junie", ".venv", "scratch", "__pycache__", "node_modules", "dist", "build"}
-    exclude_files = {".DS_Store", "README.md", "AGENTS.md", "ARCHITECTURE.md", ".editorconfig", ".gitattributes", ".gitignore"}
+    exclude_files = {".DS_Store", "README.md", "AGENTS.md", "ARCHITECTURE.md", ".editorconfig", ".gitattributes", ".gitignore", "requirements.txt"}
 
     files = []
     for path in root_dir.rglob("*"):

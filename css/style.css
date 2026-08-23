@@ -146,6 +146,12 @@ button, input, select, textarea {
   padding-top: 5.5rem;
   padding-bottom: 5.5rem;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
+.hero {
+  content-visibility: visible !important;
 }
 
 .section-alt {
@@ -1651,3 +1657,16 @@ button, input, select, textarea {
     padding: 1.5rem 0;
   }
 }
+
+/* --------------------------------------------------------------------------
+   16. Accessibility – Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
