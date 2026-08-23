@@ -1,5 +1,4 @@
 # robots.txt for https://vokalis.de/
+# Pre-launch bot protection: All crawlers disallowed
 User-agent: *
-Allow: /
-
-Sitemap: https://vokalis.de/sitemap.xml
+Disallow: /

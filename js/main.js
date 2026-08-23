@@ -5,6 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreviewGate();
   initStickyHeader();
   initMobileNavigation();
   initTherapyFilter();
@@ -13,6 +14,78 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initServiceWorker();
 });
+
+/**
+ * Pre-launch access control gate & preview passcode verification
+ */
+function initPreviewGate() {
+  const gate = document.getElementById('preview-gate');
+  if (!gate) return;
+
+  const AUTH_KEY = 'vokalis_preview_auth';
+  const VALID_PASSCODES = ['vokalis2026', 'vokalis', '1234'];
+
+  // Check URL parameters for instant bypass/unlock (e.g. ?preview=vokalis2026 or ?key=vokalis2026)
+  const urlParams = new URLSearchParams(window.location.search);
+  const previewParam = (urlParams.get('preview') || urlParams.get('key') || urlParams.get('pin') || '').trim().toLowerCase();
+
+  const isUnlockedByUrl = VALID_PASSCODES.includes(previewParam) || previewParam === '1' || previewParam === 'true';
+  const isUnlockedByStorage = localStorage.getItem(AUTH_KEY) === 'true';
+
+  function unlockSite() {
+    gate.classList.add('is-unlocked');
+    localStorage.setItem(AUTH_KEY, 'true');
+    createRelockButton();
+  }
+
+  function lockSite() {
+    gate.classList.remove('is-unlocked');
+    localStorage.removeItem(AUTH_KEY);
+    const relockBtn = document.getElementById('preview-relock-btn');
+    if (relockBtn) relockBtn.remove();
+  }
+
+  function createRelockButton() {
+    if (document.getElementById('preview-relock-btn')) return;
+    const btn = document.createElement('button');
+    btn.id = 'preview-relock-btn';
+    btn.className = 'preview-relock-btn';
+    btn.setAttribute('aria-label', 'Vorschau sperren');
+    btn.textContent = '🔒 Vorschau sperren';
+    btn.addEventListener('click', () => {
+      lockSite();
+    });
+    document.body.appendChild(btn);
+  }
+
+  if (isUnlockedByUrl || isUnlockedByStorage) {
+    unlockSite();
+  }
+
+  const form = document.getElementById('preview-passcode-form');
+  const input = document.getElementById('preview-passcode-input');
+  const errorMsg = document.getElementById('preview-error-msg');
+
+  if (form && input) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const enteredCode = input.value.trim().toLowerCase();
+
+      if (VALID_PASSCODES.includes(enteredCode)) {
+        if (errorMsg) errorMsg.style.display = 'none';
+        unlockSite();
+      } else {
+        if (errorMsg) {
+          errorMsg.textContent = 'Ungültiger Passcode. Bitte prüfen Sie Ihre Eingabe.';
+          errorMsg.style.display = 'block';
+        }
+        input.classList.add('input-error');
+        input.focus();
+      }
+    });
+  }
+}
+
 
 /**
  * Register lightweight offline service worker
