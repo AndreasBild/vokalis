@@ -49,38 +49,90 @@
   </script>
 
 
-  <!-- Schema.org JSON-LD Structured Data -->
+  <!-- Schema.org JSON-LD Structured Data (MedicalBusiness & FAQPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "Vokalis – Praxis für Logopädie & Sprachtherapie",
-    "image": "https://vokalis.de/assets/images/logo.png",
-    "url": "https://vokalis.de",
-    "telephone": "+49-000-0000000",
-    "email": "kontakt@vokalis.de",
-    "priceRange": "$$",
-    "medicalSpecialty": "SpeechPathology",
-    "description": "Moderne Logopädiepraxis für Kinder, Jugendliche und Erwachsene. Spezialisiert auf Sprach-, Sprech-, Stimm- und Schlucktherapie sowie Hausbesuche.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Musterstraße 123",
-      "addressLocality": "Musterstadt",
-      "postalCode": "12345",
-      "addressCountry": "DE"
-    },
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "08:00",
-        "closes": "18:00"
+        "@type": "MedicalBusiness",
+        "@id": "https://vokalis.de/#practice",
+        "name": "Vokalis – Praxis für Logopädie & Sprachtherapie",
+        "image": "https://vokalis.de/assets/icons/favicon.svg",
+        "url": "https://vokalis.de/",
+        "telephone": "+49-000-0000000",
+        "email": "kontakt@vokalis.de",
+        "priceRange": "$$",
+        "medicalSpecialty": "SpeechPathology",
+        "description": "Moderne Logopädiepraxis für Kinder, Jugendliche und Erwachsene. Spezialisiert auf Sprach-, Sprech-, Stimm- und Schlucktherapie sowie Hausbesuche.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Musterstraße 123",
+          "addressLocality": "Musterstadt",
+          "postalCode": "12345",
+          "addressCountry": "DE"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          }
+        ],
+        "paymentAccepted": "Gesetzliche Krankenversicherung, Private Krankenversicherung, Selbstzahler",
+        "currenciesAccepted": "EUR"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vokalis.de/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Wer übernimmt die Kosten für die Logopädie?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Logopädie ist ein anerkanntes medizinisches Heilmittel. Bei Kindern und Jugendlichen bis zum 18. Lebensjahr übernimmt die gesetzliche Krankenkasse 100 % der Kosten. Bei Erwachsenen ab 18 Jahren besteht die gesetzliche Zuzahlungspflicht (10 € Rezeptgebühr + 10 % der Behandlungskosten), sofern keine Zuzahlungsbefreiung vorliegt. Private Krankenversicherungen und Beihilfestellen erstatten die Kosten gemäß individuellem Tarif."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie lange ist eine Heilmittelverordnung gültig?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Eine Verordnung für gesetzlich Versicherte (Muster 13) muss spätestens 28 Kalendertage nach dem Ausstellungsdatum begonnen werden, es sei denn, der Arzt hat auf dem Rezept einen abweichenden spätesten Behandlungsbeginn vermerkt."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Wie lange dauert eine Therapieeinheit und wie oft findet sie statt?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In der Regel dauert eine Therapieeinheit 45 Minuten (gelegentlich 30 oder 60 Minuten, je nach ärztlicher Verordnung). Die Behandlungen finden meist 1- bis 2-mal wöchentlich statt. Eine Verordnung umfasst typischerweise 10 Therapieeinheiten."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bieten Sie auch Hausbesuche an?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Ja! Wenn Patienten aus medizinischen Gründen (z.B. nach einem Schlaganfall oder bei Gehbehinderung) nicht in unsere Praxis kommen können, kann der Arzt einen Hausbesuch verordnen. Wir behandeln Sie dann direkt zu Hause oder in einer Pflegeeinrichtung."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Was passiert, wenn ich einen Termin absagen muss?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Wir führen eine reine Bestellpraxis mit reservierten Zeitfenstern für jeden Patienten. Sollten Sie einen Termin nicht wahrnehmen können, sagen Sie diesen bitte mindestens 24 Stunden vorher telefonisch oder per E-Mail ab."
+            }
+          }
+        ]
       }
-    ],
-    "paymentAccepted": "Gesetzliche Krankenversicherung, Private Krankenversicherung, Selbstzahler",
-    "currenciesAccepted": "EUR"
+    ]
   }
   </script>
+
 </head>
 <body>
   <!-- Accessibility: Skip to Main Content -->
@@ -786,20 +838,21 @@
               <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1rem;">
                 <div class="form-group" style="margin-bottom: 0;">
                   <label for="contact-name" class="form-label">Vor- und Nachname *</label>
-                  <input type="text" id="contact-name" class="form-input" placeholder="z.B. Anna Schmidt" required>
+                  <input type="text" id="contact-name" class="form-input" placeholder="z.B. Anna Schmidt" autocomplete="name" required>
                 </div>
               </div>
 
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                 <div class="form-group" style="margin-bottom: 0;">
                   <label for="contact-phone" class="form-label">Telefonnummer *</label>
-                  <input type="tel" id="contact-phone" class="form-input" placeholder="Für schnelle Terminabsprache" required>
+                  <input type="tel" id="contact-phone" class="form-input" placeholder="Für schnelle Terminabsprache" autocomplete="tel" required>
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">
                   <label for="contact-email" class="form-label">E-Mail-Adresse *</label>
-                  <input type="email" id="contact-email" class="form-input" placeholder="ihre-mail@beispiel.de" required>
+                  <input type="email" id="contact-email" class="form-input" placeholder="ihre-mail@beispiel.de" autocomplete="email" required>
                 </div>
               </div>
+
 
               <div class="form-group">
                 <label for="contact-message" class="form-label">Ihre Nachricht / Wunschzeiten</label>

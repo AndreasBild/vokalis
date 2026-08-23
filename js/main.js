@@ -11,7 +11,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initInteractiveAssistant();
   initFaqAccordion();
   initContactForm();
+  initServiceWorker();
 });
+
+/**
+ * Register lightweight offline service worker
+ */
+function initServiceWorker() {
+  if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .catch(() => {
+          // Graceful fallback if SW unsupported or registration blocked
+        });
+    });
+  }
+}
+
 
 /**
  * Sanitize strings to prevent XSS
