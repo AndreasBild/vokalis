@@ -1,0 +1,32 @@
+# Antigravity AI Agent Ignore Configuration
+# Keep temporary files, large binaries, build artifacts and secrets out of agent context.
+
+# Version control & environment
+.git/
+.venv/
+.env
+.env.*
+!.env.example
+
+# IDE & OS caches
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.log
+
+# Analysis & temporary agent artifacts
+.junie/
+.qodana/
+scratch/
+__pycache__/
+*.pyc
+
+# Static builds / compression caches (if generated)
+*.br
+*.gz
+dist/
+build/
+node_modules/

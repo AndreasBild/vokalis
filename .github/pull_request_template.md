@@ -3,27 +3,48 @@
 <!-- Provide a concise description of what was changed, added, or fixed. -->
 
 ### 🎯 Type of Change
-- [ ] 🚀 New Feature / Section
+- [ ] 🚀 New Feature / Interactive Section (`feature/*`)
 - [ ] 🎨 UI/UX & Styling Improvement
 - [ ] ♿ Accessibility (a11y) Enhancement
 - [ ] 📱 Responsive Design / Mobile Fix
 - [ ] 🔍 SEO / Schema.org Update
 - [ ] ⚖️ Legal / Compliance (DSGVO / Impressum)
-- [ ] 🧹 Refactoring / Code Cleanup
-- [ ] 📖 Documentation Update
+- [ ] 🧹 Refactoring / Repository Governance (`chore/*`)
+- [ ] ⚡ Performance & Caching Optimization (`perf/*`)
 
 ---
 
-## 🔒 Safety & Quality Invariants
-- [ ] **Branch Target:** Base is `main` (Protected Branch) and changes originate from a topic branch (`feature/*`, `fix/*`, `chore/*`).
-- [ ] **Semantic HTML5:** Proper tag hierarchy maintained with exactly one `<h1>`.
-- [ ] **Accessibility (WCAG 2.1 AA):**
-  - High contrast ratio verified (minimum 4.5:1).
-  - Keyboard navigability confirmed (`Tab`, `Enter`, `Esc`).
-  - Interactive elements have explicit `aria-*` tags and visible `:focus-visible`.
-- [ ] **Zero Bloat & Performance:** No redundant external script dependencies.
-- [ ] **Responsive Verification:** Tested on Mobile (360-480px), Tablet (768-1024px), and Desktop (1200px+).
-- [ ] **CI Health:** Automated CI checks (`HTML, CSS & Schema Validation`) passing cleanly.
+## 🔒 6-Stage Quality Gate Invariants
+
+### 1. Analysis & Design Alignment
+- [ ] Semantic HTML5 landmark structure maintained (`<header>`, `<nav>`, `<main id="main-content">`, `<footer>`).
+- [ ] Single unique `<h1>` landmark per page.
+- [ ] CSS design tokens (`var(--...)`) used exclusively; zero raw hardcoded hex colors in components.
+
+### 2. Branch Isolation & Commits
+- [ ] Changes originated from a dedicated topic branch (`feature/*`, `fix/*`, `chore/*`, `perf/*`). Base branch is `main`.
+- [ ] Commits follow Conventional Commits formatting.
+
+### 3. Healthcare Domain & Legal Compliance (DSGVO / TMG)
+- [ ] Zero remote fonts / zero remote CDNs (system font stack or local self-hosted assets).
+- [ ] Zero unauthorized third-party trackers or cookies without consent.
+- [ ] Permanent footer navigation to `impressum.html` (§ 5 TMG) and `datenschutz.html` (DSGVO).
+- [ ] Schema.org JSON-LD structured data (`MedicalBusiness`, `MedicalClinic`, `FAQPage`) valid.
+
+### 4. Accessibility (WCAG 2.1 Level AA/AAA)
+- [ ] Focusable Skip-to-Content link present.
+- [ ] Color contrast $\ge 4.5:1$ (normal text) and $\ge 3:1$ (large UI).
+- [ ] Complete keyboard operability (`Tab`, `Enter`, `Space`, `Escape`) without keyboard traps.
+- [ ] Dynamic output containers sanitized via `escapeHtml()` and announced via `aria-live`.
+
+### 5. Performance & Asset Hygiene
+- [ ] Explicit dimensions/viewBox on all images & SVGs (CLS = 0).
+- [ ] `content-visibility: auto` applied on heavy below-the-fold sections.
+- [ ] Pre-compression verified via Brotli Quality 11 (`scripts/deploy.py`).
+
+### 6. Automated Quality Gate Pass
+- [ ] Local quality gate validation suite passed (`python3 scripts/validate.py`).
+- [ ] Zero credential or secret leaks detected.
 
 ---
 
