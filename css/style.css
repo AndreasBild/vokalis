@@ -1092,6 +1092,7 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
+.value-text h3,
 .value-text h4 {
   font-size: 1rem;
   font-weight: 800;
@@ -1434,6 +1435,7 @@ button, input, select, textarea {
   flex-shrink: 0;
 }
 
+.contact-details h3,
 .contact-details h4 {
   font-size: 1.05rem;
   font-weight: 800;

@@ -120,12 +120,17 @@ vokalis/
 │   ├── rules/                 # Modular domain rules
 │   │   ├── git-workflow.md
 │   │   ├── coding-standards.md
+│   │   ├── html-development.md
+│   │   ├── token-efficiency.md
+│   │   ├── model-selection.md
 │   │   ├── performance-checks.md
 │   │   ├── security-privacy.md
 │   │   ├── domain-integrity.md
 │   │   ├── web-standards.md
 │   │   └── seo-accessibility.md
 │   └── skills/                # Agent operational skills
+│       ├── html-development/SKILL.md
+│       ├── token-efficiency/SKILL.md
 │       ├── validate-quality-gate/SKILL.md
 │       ├── static-analysis-linting/SKILL.md
 │       ├── schema-verification/SKILL.md
@@ -152,7 +157,19 @@ vokalis/
 
 ---
 
-## 4. Token Efficiency & Output Guidelines
-* Provide clean, precise, targeted code edits.
-* Keep explanations structured, concise, and professional.
-* Always cite modified files with markdown links (`[file.ext](file:///path/to/file)`).
+## 4. Token Efficiency Invariants
+* **Surgical Edits:** Use `replace_file_content` for compact, targeted changes. Never rewrite whole files unnecessarily.
+* **Context Discipline:** Use `grep_search` to pinpoint line numbers, then read bounded file slices (`view_file` with `StartLine`/`EndLine` <= 80 lines).
+* **CLI Economy:** Execute commands with quiet flags (`-q`, `--quiet`) and rely on return exit codes to avoid context bloat.
+* **Concise Communication:** Provide structured, direct answers without repeating artifact summaries or conversational boilerplate.
+* **Symbol Linking:** Always format clickable links for modified files and symbols (`[file.ext](file:///path/to/file#L10-L25)`).
+
+---
+
+## 5. Model Selection Matrix (Task Allocation)
+* **Tier 1: Workhorse (Default) – Gemini 3.8 Flash (Medium)**
+  - Use for: 90%+ of day-to-day web tasks including HTML5 semantic markup, CSS design tokens, Vanilla JS handlers, test runs, validation scripts, linting, git topic branching, and PR drafting.
+  - Guarantees ultra-low latency, maximum token efficiency, and high throughput.
+* **Tier 2: Escalation (Deep Reasoning) – Gemini 2.5 Pro / Thinking Models**
+  - Use for: System-wide architectural shifts, complex concurrency/state machines, deep security threat analysis, or highly ambiguous early-stage planning.
+  - De-escalation: Return to Tier 1 immediately once architectural design is determined.

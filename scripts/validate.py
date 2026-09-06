@@ -46,7 +46,7 @@ def run_secret_scan() -> bool:
 
 
 def validate_html_files() -> bool:
-    print("📄 [2/7] Validating HTML5 semantic structure & accessibility landmarks...")
+    print("📄 [2/7] Validating HTML5 semantic structure, heading hierarchy & a11y...")
     required_files = ["index.html", "impressum.html", "datenschutz.html"]
     for f in required_files:
         if not os.path.exists(f):
@@ -56,6 +56,8 @@ def validate_html_files() -> bool:
             content = file.read()
             assert "<!DOCTYPE html>" in content, f"Missing <!DOCTYPE html> in {f}"
             assert '<html lang="de">' in content, f"Missing <html lang=\"de\"> in {f}"
+            assert "<meta charset=" in content, f"Missing charset meta in {f}"
+            assert "<title>" in content, f"Missing <title> tag in {f}"
             assert '<meta name="viewport"' in content, f"Missing viewport meta in {f}"
             assert "skip-link" in content, f"Missing skip-to-content link in {f}"
             assert "<header" in content, f"Missing <header> landmark in {f}"
@@ -65,7 +67,40 @@ def validate_html_files() -> bool:
             # Exactly one h1 per page
             h1_count = len(re.findall(r"<h1\b", content, re.IGNORECASE))
             assert h1_count == 1, f"Expected exactly 1 <h1> in {f}, found {h1_count}"
-        print(f"   ✅ {f} conforms to HTML5 semantic structure.")
+
+            # Strict sequential heading progression (h1 -> h2 -> h3, no skipped levels)
+            headings = [int(h) for h in re.findall(r"<h([1-6])\b", content, re.IGNORECASE)]
+            current_level = 1
+            for h in headings:
+                assert h <= current_level + 1, f"Skipped heading level in {f}: jumped from h{current_level} to h{h}"
+                current_level = h
+
+            # Unique HTML IDs across the entire document
+            raw_ids = re.findall(r'id=["\']([^"\']+)["\']', content)
+            seen_ids = set()
+            duplicate_ids = set()
+            for id_val in raw_ids:
+                if id_val in seen_ids:
+                    duplicate_ids.add(id_val)
+                seen_ids.add(id_val)
+            assert not duplicate_ids, f"Duplicate HTML IDs detected in {f}: {duplicate_ids}"
+
+            # All images have alt attributes
+            images = re.findall(r"<img\b([^>]*)>", content, re.IGNORECASE)
+            for img in images:
+                assert "alt=" in img, f"Image missing alt attribute in {f}: {img}"
+
+            # Form controls have associated labels or ARIA labels
+            controls = re.findall(r"<(input|select|textarea)\b([^>]*)>", content, re.IGNORECASE)
+            for tag, attrs in controls:
+                if re.search(r'type=["\']hidden["\']', attrs):
+                    continue
+                id_match = re.search(r'id=["\']([^"\']+)["\']', attrs)
+                has_aria = bool(re.search(r'aria-label(?:ledby)?=["\']([^"\']+)["\']', attrs))
+                has_for = bool(id_match and (f'for="{id_match.group(1)}"' in content or f"for='{id_match.group(1)}'" in content))
+                assert has_aria or has_for, f"Unlabelled form control in {f}: <{tag} {attrs}>"
+
+        print(f"   ✅ {f} conforms to HTML5 semantic, heading, and a11y invariants.")
     return True
 
 
