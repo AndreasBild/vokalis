@@ -18,12 +18,15 @@
 
 ### 1. Analysis & Design Alignment
 - [ ] Semantic HTML5 landmark structure maintained (`<header>`, `<nav>`, `<main id="main-content">`, `<footer>`).
-- [ ] Single unique `<h1>` landmark per page.
+- [ ] Single unique `<h1>` landmark per page with strict sequential heading hierarchy (no skipped levels).
+- [ ] Unique HTML `id` attributes across every document (zero duplicate IDs).
+- [ ] Accessible form bindings (`<label for="...">` or `aria-label`/`aria-labelledby`).
 - [ ] CSS design tokens (`var(--...)`) used exclusively; zero raw hardcoded hex colors in components.
 
-### 2. Branch Isolation & Commits
+### 2. Branch Isolation, Model Selection & Token Efficiency
 - [ ] Changes originated from a dedicated topic branch (`feature/*`, `fix/*`, `chore/*`, `perf/*`). Base branch is `main`.
-- [ ] Commits follow Conventional Commits formatting.
+- [ ] Commits follow Conventional Commits formatting with surgical, token-efficient diffs.
+- [ ] Appropriate model tier utilized (Gemini 3.8 Flash default for web tasks, Pro/Thinking reserved for deep architecture).
 
 ### 3. Healthcare Domain & Legal Compliance (DSGVO / TMG)
 - [ ] Zero remote fonts / zero remote CDNs (system font stack or local self-hosted assets).
