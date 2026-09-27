@@ -16,7 +16,7 @@ description: End-to-end 6-stage development lifecycle, branch isolation, selecti
 4. **Implementation:** Write clean, complete vanilla code without stubs or placeholders.
 5. **Quality Gate:** Run regression test suite:
    ```bash
-   python3 scripts/validate.py
+   ./test.sh
    ```
 6. **Automated PR & Review:** Stage selectively and submit PR.
 

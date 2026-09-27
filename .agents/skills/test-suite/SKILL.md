@@ -11,7 +11,8 @@ Runs the complete automated quality gate and validation suite for the Vokalis pr
 ## Execution Instructions
 Run the validation script directly from the project root:
 ```bash
-python3 scripts/validate.py
+./test.sh
+# or: python3 scripts/validate.py
 ```
 
 ## Test Suite Checks
