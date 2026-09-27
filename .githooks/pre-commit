@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Git pre-commit hook to run Vokalis validation suite before committing
+set -e
+
+echo "🔍 Running pre-commit validation suite (test.sh)..."
+./test.sh
+echo "✓ Pre-commit checks passed!"

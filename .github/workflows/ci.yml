@@ -2,7 +2,7 @@ name: CI Web & Security Verification
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, "feature/**", "fix/**", "chore/**", "perf/**" ]
   pull_request:
     branches: [ main ]
 
@@ -26,4 +26,5 @@ jobs:
 
       - name: Run Unified Quality Gate & CI Validation Suite
         run: |
-          python3 scripts/validate.py
+          chmod +x test.sh scripts/validate.py
+          ./test.sh
